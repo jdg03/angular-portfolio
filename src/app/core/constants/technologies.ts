@@ -21,10 +21,10 @@ export const TECHNOLOGIES = {
     class: "border-red-600/20 text-red-300 bg-red-600/5",
     icon: "SqlServer",
   },
-  MYSQL: {
-    name: "MySQL",
-    class: "border-cyan-600/20 text-cyan-300 bg-cyan-600/5",
-    icon: "MySQL",
+  POSTGRES: {
+    name: "PostgreSQL",
+    class: "border-blue-600/20 text-blue-300 bg-blue-600/5",
+    icon: "Postgres",
   },
   MONGODB: {
     name: "MongoDB",

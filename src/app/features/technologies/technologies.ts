@@ -157,13 +157,13 @@ export class TechnologiesComponent {
           brandColorClass: 'bg-red-500'
         },
         {
-          ...TECHNOLOGIES.MYSQL,
+          ...TECHNOLOGIES.POSTGRES,
           useCase: {
-            es: 'Modelado relacional clásico, queries SQL eficientes y soporte transaccional',
-            en: 'Classic relational modeling, efficient SQL queries, and transactional support'
+            es: 'Bases de datos relacionales avanzadas, modelado relacional complejo, optimización de queries y procedimientos.',
+            en: 'Advanced relational databases, complex relational modeling, query and procedure optimization.'
           },
-          glowClass: 'hover:border-cyan-600/40 hover:shadow-[0_0_25px_rgba(8,145,178,0.25)]',
-          brandColorClass: 'bg-cyan-600'
+          glowClass: 'hover:border-blue-600/40 hover:shadow-[0_0_25px_rgba(37,99,235,0.25)]',
+          brandColorClass: 'bg-blue-600'
         },
         {
           ...TECHNOLOGIES.MONGODB,

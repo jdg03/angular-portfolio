@@ -39,7 +39,7 @@
             @for (tech of group.items; track tech.name) {
               
               <!-- Individual Icon Wrapper with Relative Tooltip anchor - Elevates stacking index on hover -->
-              <div class="relative group cursor-pointer p-4 transition-all duration-400 ease-out transform hover:scale-130 hover:-translate-y-1 flex items-center justify-center hover:z-50">
+              <div class="relative group cursor-pointer p-3 transition-all duration-400 ease-out transform hover:scale-115 hover:-translate-y-1 flex flex-col items-center justify-center hover:z-50 gap-2">
                 
                 <!-- Blurred brand glow under the logo on hover -->
                 <div class="absolute inset-2 rounded-full blur-xl opacity-0 group-hover:opacity-25 transition-all duration-500 {{ tech.brandColorClass }} scale-90"></div>
@@ -48,6 +48,11 @@
                 <div class="relative z-10 flex items-center justify-center transition-transform duration-400 group-hover:rotate-3">
                   <app-svg-icon [name]="tech.icon" size="38"></app-svg-icon>
                 </div>
+
+                <!-- Technology Name -->
+                <span class="relative z-10 text-[11px] text-white/50 group-hover:text-white/90 transition-colors duration-300 font-sans font-medium tracking-wide">
+                  {{ tech.name }}
+                </span>
 
                 <!-- Custom Hover Floating Tooltip positioned above (w-60) - Solid midnight dark background for absolute occlusion -->
                 <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 w-60 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-450 ease-out z-50 rounded-xl border border-white/10 bg-[#0a0d16] p-4 shadow-[0_10px_35px_rgba(0,0,0,0.85)]">

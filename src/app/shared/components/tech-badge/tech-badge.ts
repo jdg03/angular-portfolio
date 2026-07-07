@@ -7,7 +7,7 @@ import { SvgIconComponent } from '../svg-icon/svg-icon';
   standalone: true,
   imports: [SvgIconComponent],
   template: `
-    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border text-xs font-mono tracking-tighter uppercase transition-colors"
+    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border text-[11px] font-sans font-semibold tracking-wider uppercase transition-colors"
           [class]="tech().class || 'border-outline-variant/30 text-on-surface bg-surface-container/50'">
       @if (tech().icon) {
         <app-svg-icon [name]="tech().icon" size="12" class="opacity-80"></app-svg-icon>

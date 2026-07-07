@@ -53,8 +53,8 @@ export class ProjectsComponent {
   });
 
   // Tailored aesthetic filter classes
-  protected readonly activeFilterClasses = 'px-5 py-2.5 rounded-full bg-primary text-background font-mono text-[11px] font-bold shadow-[0_0_15px_rgba(210,187,255,0.4)] transition-all duration-300 cursor-pointer';
-  protected readonly inactiveFilterClasses = 'px-5 py-2.5 rounded-full bg-surface-container border border-outline-variant/20 text-on-surface-variant font-mono text-[11px] hover:text-white hover:border-primary/40 transition-all duration-300 cursor-pointer';
+  protected readonly activeFilterClasses = 'px-5 py-2.5 rounded-full bg-primary text-background font-sans text-[11px] font-bold tracking-wide shadow-[0_0_15px_rgba(210,187,255,0.4)] transition-all duration-300 cursor-pointer';
+  protected readonly inactiveFilterClasses = 'px-5 py-2.5 rounded-full bg-surface-container border border-outline-variant/20 text-on-surface-variant font-sans text-[11px] font-semibold tracking-wide hover:text-white hover:border-primary/40 transition-all duration-300 cursor-pointer';
 
   // Toggle active filter state
   setFilter(filter: string) {

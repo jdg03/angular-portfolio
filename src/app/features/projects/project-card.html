@@ -21,7 +21,7 @@
       <!-- Tech Stack Used with Custom Vector Icons -->
       <div class="flex flex-wrap gap-1.5">
         @for (tech of project().technologies; track tech.name) {
-          <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full border border-white/5 bg-surface-container-high/40 text-[10px] font-mono text-primary uppercase">
+          <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full border border-white/5 bg-surface-container-high/40 text-[9px] font-sans font-semibold text-primary uppercase tracking-wider">
             @if (tech.icon) {
               <app-svg-icon [name]="tech.icon" size="10" class="text-primary"></app-svg-icon>
             }

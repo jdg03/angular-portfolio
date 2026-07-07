@@ -91,4 +91,14 @@ export const TECHNOLOGIES = {
     class: "border-sky-600/20 text-sky-300 bg-sky-600/5",
     icon: "Azure",
   },
+  HTML: {
+    name: "HTML5",
+    class: "border-orange-500/20 text-orange-400 bg-orange-500/5",
+    icon: "Html",
+  },
+  CSS: {
+    name: "CSS3",
+    class: "border-blue-500/20 text-blue-400 bg-blue-500/5",
+    icon: "Css",
+  },
 } satisfies Record<string, Technology>;

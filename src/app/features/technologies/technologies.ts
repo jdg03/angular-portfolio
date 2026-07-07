@@ -52,13 +52,22 @@ export class TechnologiesComponent {
           brandColorClass: 'bg-cyan-500'
         },
         {
-          ...TECHNOLOGIES.NEXT,
+          ...TECHNOLOGIES.HTML,
           useCase: {
-            es: 'SSR (Server-Side Rendering), optimización SEO avanzada y generador estático estricto',
-            en: 'SSR (Server-Side Rendering), advanced SEO optimization, and strict static generation'
+            es: 'Estructuración semántica web moderna, SEO técnico inicial y accesibilidad (WAI-ARIA).',
+            en: 'Modern semantic web structuring, initial technical SEO, and accessibility (WAI-ARIA).'
           },
-          glowClass: 'hover:border-white/40 hover:shadow-[0_0_25px_rgba(255,255,255,0.15)]',
-          brandColorClass: 'bg-white'
+          glowClass: 'hover:border-orange-500/40 hover:shadow-[0_0_25px_rgba(249,115,22,0.25)]',
+          brandColorClass: 'bg-orange-500'
+        },
+        {
+          ...TECHNOLOGIES.CSS,
+          useCase: {
+            es: 'Estilado avanzado, maquetación flexbox/grid, animaciones y responsive design.',
+            en: 'Advanced styling, flexbox/grid layout, animations, and responsive design.'
+          },
+          glowClass: 'hover:border-blue-500/40 hover:shadow-[0_0_25px_rgba(59,130,246,0.25)]',
+          brandColorClass: 'bg-blue-500'
         },
         {
           ...TECHNOLOGIES.TAILWIND,

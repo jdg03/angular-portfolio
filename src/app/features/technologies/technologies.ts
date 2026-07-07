@@ -136,8 +136,8 @@ export class TechnologiesComponent {
         {
           ...TECHNOLOGIES.PYTHON,
           useCase: {
-            es: 'Modelos de inteligencia artificial, visión computacional con TensorFlow y automatizaciones',
-            en: 'Artificial intelligence models, computer vision with TensorFlow, and automations'
+            es: 'Modelos de inteligencia artificial, desarrollo de APIs con FastAPI, visión computacional con TensorFlow y automatizaciones',
+            en: 'Artificial intelligence models, API development with FastAPI, computer vision with TensorFlow, and automations'
           },
           glowClass: 'hover:border-blue-500/40 hover:shadow-[0_0_25px_rgba(59,130,246,0.25)]',
           brandColorClass: 'bg-blue-500'

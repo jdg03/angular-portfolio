@@ -7,7 +7,7 @@ export const EXPERIENCE: ExperienceItem[] = [
     dateStart: { es: "Enero 2026", en: "January 2026" },
     dateEnd: { es: "Actualmente", en: "Present" },
     type: { es: "TIEMPO COMPLETO", en: "FULL-TIME" },
-    modality: { es: "PRESENCIAL", en: "ON-SITE" },
+    modality: { es: "REMOTO", en: "REMOTE" },
     responsibilities: [
       {
         title: { es: "Agentes de IA y CI/CD", en: "AI Agents & CI/CD" },
@@ -72,7 +72,7 @@ export const EXPERIENCE: ExperienceItem[] = [
     dateStart: { es: "Febrero 2025", en: "February 2025" },
     dateEnd: { es: "Julio 2025", en: "July 2025" },
     type: { es: "TIEMPO COMPLETO", en: "FULL-TIME" },
-    modality: { es: "HÍBRIDO", en: "HYBRID" },
+    modality: { es: "PRESENCIAL", en: "ON-SITE" },
     responsibilities: [
       {
         title: { es: "Requerimientos", en: "Requirements" },

@@ -1,0 +1,30 @@
+@if (link() && isExternal()) {
+  <a [href]="link()!" target="_blank" rel="noopener noreferrer"
+     [class]="variant() === 'primary' ? primaryClasses : secondaryClasses">
+    <span class="relative z-10 flex items-center justify-center gap-2">
+      @if (icon()) {
+        <span class="material-symbols-outlined text-[20px]">{{ icon() }}</span>
+      }
+      <ng-content></ng-content>
+    </span>
+  </a>
+} @else if (link() && !isExternal()) {
+  <a [routerLink]="link()"
+     [class]="variant() === 'primary' ? primaryClasses : secondaryClasses">
+    <span class="relative z-10 flex items-center justify-center gap-2">
+      @if (icon()) {
+        <span class="material-symbols-outlined text-[20px]">{{ icon() }}</span>
+      }
+      <ng-content></ng-content>
+    </span>
+  </a>
+} @else {
+  <button [class]="variant() === 'primary' ? primaryClasses : secondaryClasses">
+    <span class="relative z-10 flex items-center justify-center gap-2">
+      @if (icon()) {
+        <span class="material-symbols-outlined text-[20px]">{{ icon() }}</span>
+      }
+      <ng-content></ng-content>
+    </span>
+  </button>
+}

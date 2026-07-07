@@ -1,0 +1,54 @@
+<app-glass-card class="h-full flex flex-col justify-between">
+  <div class="flex flex-col h-full justify-between gap-5 text-left">
+    <div>
+      <!-- Recessed Preview Image with Zoom Effect -->
+      <a [href]="certification().link" target="_blank" rel="noopener noreferrer" 
+         class="relative block overflow-hidden rounded-2xl h-44 border border-white/5 bg-surface-container-low group mb-5">
+        <img [src]="certification().image" 
+             [alt]="translate(certification().title)" 
+             loading="lazy"
+             class="w-full h-full object-cover grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-85 transition-all duration-200 ease-out group-hover:scale-105" />
+        <div class="absolute inset-0 shadow-[inset_0_0_20px_rgba(0,0,0,0.8)] pointer-events-none"></div>
+      </a>
+
+      <!-- Title & Academy -->
+      <h3 class="font-display text-base font-bold text-white mb-1.5 leading-snug">
+        <a [href]="certification().link" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors">
+          {{ translate(certification().title) }}
+        </a>
+      </h3>
+      <p class="font-sans text-[11px] font-bold text-primary mb-3">
+        {{ certification().academy }}
+      </p>
+
+      <!-- Dynamic Expandable Description -->
+      <div class="relative">
+        <div class="relative overflow-hidden transition-all duration-300 ease-in-out"
+             [style.max-height]="isExpanded() ? '250px' : '54px'">
+          <p class="font-sans text-[11px] leading-relaxed text-on-surface-variant">
+            {{ translate(certification().description) }}
+          </p>
+        </div>
+        
+        <!-- Toggle button shown if description is long enough -->
+        @if (certification().description && translate(certification().description).length > 120) {
+          <button (click)="toggleExpanded()"
+                  class="font-mono text-[9px] text-primary hover:text-white transition-colors mt-2 cursor-pointer uppercase tracking-wider font-bold">
+            {{ isExpanded() ? ui.certCollapse[lang()] : ui.certExpand[lang()] }}
+          </button>
+        }
+      </div>
+    </div>
+
+    <!-- Verification Footer link -->
+    <div class="mt-auto pt-4 border-t border-white/5">
+      @if (certification().link) {
+        <a [href]="certification().link" target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center gap-1.5 font-mono text-[10px] text-primary hover:text-white transition-all hover:translate-x-0.5 cursor-pointer">
+          <app-svg-icon name="Link" size="12"></app-svg-icon>
+          {{ ui.certVerify[lang()] }}
+        </a>
+      }
+    </div>
+  </div>
+</app-glass-card>

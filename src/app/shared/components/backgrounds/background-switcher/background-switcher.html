@@ -1,0 +1,33 @@
+<!-- Constellation Background Layer -->
+<app-nodes-bg [bgColor]="activeColor().value"></app-nodes-bg>
+
+<!-- Floating Switcher Panel UI -->
+<div class="fixed bottom-6 right-6 z-[100] flex flex-col items-end gap-3 font-mono">
+  
+  <!-- Switcher Options Card -->
+  <div class="bg-[#0a0d16]/80 backdrop-blur-xl border border-white/10 rounded-2xl p-4 shadow-[0_15px_35px_rgba(0,0,0,0.85)] flex flex-col gap-2.5 w-48 transition-all duration-300 transform"
+       [class.opacity-0]="isCollapsed()"
+       [class.pointer-events-none]="isCollapsed()"
+       [class.translate-y-4]="isCollapsed()"
+       [class.scale-95]="isCollapsed()">
+    
+    <div class="text-[9px] text-primary uppercase tracking-widest font-bold border-b border-white/5 pb-2">
+      Colores de Fondo
+    </div>
+    
+    @for (opt of colorOptions; track opt.id) {
+      <button (click)="selectColor(opt)"
+              [class]="activeColor().id === opt.id ? activeBtnClass : inactiveBtnClass">
+        <span class="w-3.5 h-3.5 rounded-full border shrink-0" [class]="opt.indicatorClass"></span>
+        {{ opt.name }}
+      </button>
+    }
+  </div>
+  
+  <!-- Floating settings button -->
+  <button (click)="toggleCollapse()"
+          class="w-10 h-10 rounded-full bg-primary/10 hover:bg-primary/20 border border-primary/30 flex items-center justify-center text-primary shadow-[0_0_15px_rgba(210,187,255,0.25)] hover:scale-105 transition-all cursor-pointer">
+    <span class="material-symbols-outlined text-[20px]">{{ isCollapsed() ? 'palette' : 'close' }}</span>
+  </button>
+  
+</div>

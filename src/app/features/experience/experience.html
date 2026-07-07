@@ -1,0 +1,97 @@
+<section id="experiencia" class="relative py-section-padding overflow-hidden">
+  <div class="relative z-10 max-w-container-max mx-auto px-gutter">
+    <header class="mb-20 text-center md:text-left">
+      <!-- Section Header -->
+      <div class="inline-flex items-center gap-2 mb-4 px-3 py-1 rounded-full border border-primary/20 bg-primary/5">
+        <span class="w-2 h-2 rounded-full bg-primary animate-pulse shadow-[0_0_8px_#d2bbff]"></span>
+        <span class="text-label-mono font-mono text-[10px] text-primary uppercase">{{ ui.expBadge[lang()] }}</span>
+      </div>
+      <h2 class="font-display text-4xl md:text-6xl font-bold text-white mb-4">{{ ui.expTitle[lang()] }}</h2>
+      <p class="font-sans text-sm md:text-base text-on-surface-variant max-w-2xl leading-relaxed">
+        {{ ui.expDesc[lang()] }}
+      </p>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-12 relative">
+      
+      <!-- Vertical Timeline Line (Glow Gradient) -->
+      <div class="hidden md:block absolute left-[5.5rem] top-0 bottom-0 w-px timeline-line opacity-20 z-0"></div>
+
+      <!-- Experience Items Loop -->
+      @for (exp of experiences(); track exp.company) {
+        <div class="md:col-start-2 md:col-span-10 group relative z-10 w-full">
+          <div class="flex flex-col md:flex-row gap-8 md:gap-16 w-full">
+            
+            <!-- Node Point & Date -->
+            <div class="flex md:flex-col items-center md:items-end md:w-32 shrink-0 gap-4">
+              <div class="order-2 md:order-1 text-left md:text-right font-mono text-xs whitespace-nowrap">
+                <span class="font-bold text-primary">{{ translate(exp.dateStart) }}</span>
+                <span class="text-outline mx-1">—</span>
+                <span class="text-outline">{{ translate(exp.dateEnd) }}</span>
+              </div>
+              <div class="order-1 md:order-2 w-4 h-4 rounded-full bg-primary shadow-[0_0_15px_#d2bbff] border-4 border-surface-container z-10"></div>
+            </div>
+
+            <!-- Content Card -->
+            <div class="flex-grow w-full">
+              <app-glass-card>
+                <div class="relative z-10 w-full text-left">
+                  <!-- Decorative top-right inner glow -->
+                  <div class="absolute -right-20 -top-20 w-40 h-40 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/10 transition-colors pointer-events-none"></div>
+                  
+                  <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4 border-b border-white/5 pb-6">
+                    <div>
+                      <h3 class="font-display text-2xl font-bold text-white mb-1 leading-tight">{{ translate(exp.title) }}</h3>
+                      <div class="flex items-center gap-2 text-primary font-sans text-sm font-semibold">
+                        <span class="material-symbols-outlined text-sm">corporate_fare</span>
+                        <span class="tracking-wide">{{ exp.company }}</span>
+                      </div>
+                    </div>
+                    <!-- Badges -->
+                    <div class="flex gap-2">
+                      <span class="px-3 py-1 rounded-md bg-surface-container-high text-label-mono font-mono text-[9px] text-primary border border-primary/20">{{ translate(exp.type) }}</span>
+                      <span class="px-3 py-1 rounded-md bg-surface-container-high text-label-mono font-mono text-[9px] text-tertiary border border-tertiary/20">{{ translate(exp.modality) }}</span>
+                    </div>
+                  </div>
+
+                  <!-- Responsibilities Bento Grid inside Card -->
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-8">
+                    @for (resp of exp.responsibilities; track translate(resp.title); let index = $index) {
+                      <div class="flex gap-4"
+                           [class.md:col-span-2]="index === 4 && exp.responsibilities.length === 5">
+                        <div class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 border"
+                             [class]="resp.color === 'primary' ? 'bg-primary/10 border-primary/20 text-primary' : 'bg-tertiary/10 border-tertiary/20 text-tertiary'">
+                           <span class="material-symbols-outlined font-normal" style="font-variation-settings: 'FILL' 1;">{{ resp.icon }}</span>
+                        </div>
+                        <div>
+                          <h4 class="text-white font-bold text-sm mb-1 uppercase tracking-wider font-mono">{{ translate(resp.title) }}</h4>
+                          <p class="text-on-surface-variant text-xs leading-relaxed">{{ translate(resp.description) }}</p>
+                        </div>
+                      </div>
+                    }
+                  </div>
+
+                  <!-- Technologies Used Footer Chips -->
+                  @if (exp.frontendTechs) {
+                    <div class="mt-10 pt-6 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
+                      <p class="text-outline text-xs uppercase tracking-wider font-mono">{{ ui.expTechsUsed[lang()] }}</p>
+                      <div class="flex flex-wrap gap-2 justify-center">
+                        @for (tech of exp.frontendTechs; track tech) {
+                          <span class="px-3 py-1 bg-surface-container border border-primary/10 rounded-full font-mono text-[9px] text-primary uppercase tracking-tighter">
+                            {{ tech }}
+                          </span>
+                        }
+                      </div>
+                    </div>
+                  }
+                </div>
+              </app-glass-card>
+            </div>
+
+          </div>
+        </div>
+      }
+
+    </div>
+  </div>
+</section>

@@ -1,0 +1,80 @@
+<section id="tecnologias" class="relative py-section-padding border-t border-white/5">
+  
+  <!-- Technical Grid Mesh Overlay -->
+  <div class="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none opacity-60"></div>
+  
+  <!-- Massive Background Ambient Lights -->
+  <div class="absolute top-1/4 left-10 w-[500px] h-[500px] rounded-full bg-primary/5 blur-[130px] pointer-events-none"></div>
+  <div class="absolute bottom-1/4 right-10 w-[400px] h-[400px] rounded-full bg-secondary/3 blur-[120px] pointer-events-none"></div>
+
+  <div class="relative z-10 max-w-container-max mx-auto px-gutter">
+    
+    <!-- Section Header (Balanced Hierarchy) -->
+    <header class="mb-16 text-center md:text-left">
+      <div class="inline-flex items-center gap-2 mb-4 px-3 py-1 rounded-full border border-primary/20 bg-primary/5">
+        <span class="w-2 h-2 rounded-full bg-primary animate-pulse shadow-[0_0_8px_#d2bbff]"></span>
+        <span class="text-label-mono font-mono text-[10px] text-primary uppercase">{{ ui.techBadge[lang()] }}</span>
+      </div>
+      <h2 class="font-display text-3xl md:text-5xl font-bold text-white mb-4 tracking-tight">{{ ui.techTitle[lang()] }}</h2>
+      <p class="font-sans text-sm md:text-base text-on-surface-variant max-w-2xl leading-relaxed">
+        {{ ui.techDesc[lang()] }}
+      </p>
+    </header>
+
+    <!-- Groups Categories Bento (Balanced 2-Column Mosaics) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
+      @for (group of techGroups; track translate(group.nombre)) {
+        
+        <div>
+          <!-- Category Accent Header -->
+          <div class="flex items-center gap-3 mb-6">
+            <span class="w-1.5 h-5 rounded-full bg-primary shadow-[0_0_8px_#d2bbff]"></span>
+            <h3 class="font-display text-base font-bold text-white tracking-tight">
+              {{ translate(group.nombre) }}
+            </h3>
+          </div>
+
+          <!-- Category Compact Flex Row (Logo Only) -->
+          <div class="flex flex-wrap gap-x-8 gap-y-6 justify-start items-center">
+            @for (tech of group.items; track tech.name) {
+              
+              <!-- Individual Icon Wrapper with Relative Tooltip anchor - Elevates stacking index on hover -->
+              <div class="relative group cursor-pointer p-4 transition-all duration-400 ease-out transform hover:scale-130 hover:-translate-y-1 flex items-center justify-center hover:z-50">
+                
+                <!-- Blurred brand glow under the logo on hover -->
+                <div class="absolute inset-2 rounded-full blur-xl opacity-0 group-hover:opacity-25 transition-all duration-500 {{ tech.brandColorClass }} scale-90"></div>
+                
+                <!-- Clean direct Brand Logo -->
+                <div class="relative z-10 flex items-center justify-center transition-transform duration-400 group-hover:rotate-3">
+                  <app-svg-icon [name]="tech.icon" size="38"></app-svg-icon>
+                </div>
+
+                <!-- Custom Hover Floating Tooltip positioned above (w-60) - Solid midnight dark background for absolute occlusion -->
+                <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 w-60 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-450 ease-out z-50 rounded-xl border border-white/10 bg-[#0a0d16] p-4 shadow-[0_10px_35px_rgba(0,0,0,0.85)]">
+                  
+                  <!-- Internal soft brand glow watermark inside tooltip -->
+                  <div class="absolute -right-6 -bottom-6 w-16 h-16 rounded-full blur-2xl opacity-20 pointer-events-none {{ tech.brandColorClass }}"></div>
+
+                  <div class="relative text-left flex flex-col gap-2 z-10 pointer-events-none">
+                    <div class="flex items-center justify-between">
+                      <h4 class="font-display text-xs font-bold text-white leading-none">{{ tech.name }}</h4>
+                    </div>
+                    <div class="w-full h-px bg-white/5"></div>
+                    <p class="font-sans text-[10px] leading-relaxed text-on-surface-variant">
+                      {{ translate(tech.useCase) }}
+                    </p>
+                  </div>
+                </div>
+
+              </div>
+
+            }
+          </div>
+
+        </div>
+
+      }
+    </div>
+
+  </div>
+</section>

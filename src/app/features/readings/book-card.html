@@ -1,0 +1,58 @@
+<app-glass-card class="h-full block">
+  <div class="flex flex-col sm:flex-row gap-6 items-start text-left h-full">
+    
+    <!-- Cover Image with Premium 3D Perspective shadow -->
+    <div class="relative w-28 h-40 rounded-lg overflow-hidden border border-white/5 bg-surface-container-low shrink-0 shadow-[4px_10px_20px_rgba(0,0,0,0.5)] group">
+      <img [src]="book().coverImage" 
+           [alt]="book().title"
+           loading="lazy" 
+           class="w-full h-full object-cover transition-all duration-200 ease-out group-hover:scale-105" />
+      <div class="absolute inset-0 shadow-[inset_0_0_10px_rgba(0,0,0,0.6)] pointer-events-none"></div>
+    </div>
+
+    <!-- Book details content -->
+    <div class="flex-grow flex flex-col justify-between h-full min-h-[160px] w-full">
+      <div>
+        <!-- Tags -->
+        <div class="flex items-center justify-between gap-4 mb-2.5">
+          <span class="px-2 py-0.5 rounded text-[8px] font-mono uppercase tracking-wider font-bold border border-primary/20 bg-primary/5 text-primary">
+            {{ book().tags?.[0] ? (lang() === 'es' ? book().tags?.[0] : (book().tags?.[0] === 'Técnico' ? 'Technical' : book().tags?.[0])) : (lang() === 'es' ? 'Técnico' : 'Technical') }}
+          </span>
+        </div>
+
+        <!-- Title & Author -->
+        <h3 class="font-display text-base font-bold text-white mb-1 leading-snug line-clamp-1">
+          {{ book().title }}
+        </h3>
+        <p class="font-sans text-[11px] text-on-surface-variant font-medium mb-3">
+          {{ lang() === 'es' ? 'Por' : 'By' }} {{ book().author }}
+        </p>
+
+        <!-- Brief review/description -->
+        <p class="font-sans text-[11px] leading-relaxed text-on-surface-variant line-clamp-3 mb-4">
+          {{ book().description }}
+        </p>
+      </div>
+
+      <!-- Progress Tracking bar -->
+      <div class="mt-auto pt-3 border-t border-white/5">
+        <div class="flex items-center justify-between text-[9px] font-mono mb-1">
+          <span class="text-on-surface-variant uppercase tracking-widest font-bold">
+            {{ ui.readProgress[lang()] }}
+            @if (book().totalPages && book().totalPages! > 0) {
+              <span class="text-on-surface-variant/60 lowercase font-sans ml-1">({{ book().pagesRead }} / {{ book().totalPages }} {{ lang() === 'es' ? 'págs' : 'pages' }})</span>
+            }
+          </span>
+          <span class="text-primary font-bold">{{ book().progress }}%</span>
+        </div>
+        <div class="w-full h-1.5 rounded-full bg-surface-container-high/40 overflow-hidden border border-white/5 relative">
+          <!-- Active sliding glow progress -->
+          <div class="h-full bg-gradient-to-r from-primary to-secondary shadow-[0_0_8px_#d2bbff] transition-all duration-1000 ease-out"
+               [style.width.%]="book().progress"></div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</app-glass-card>

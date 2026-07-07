@@ -101,4 +101,24 @@ export const TECHNOLOGIES = {
     class: "border-blue-500/20 text-blue-400 bg-blue-500/5",
     icon: "Css",
   },
+  GITLAB: {
+    name: "GitLab",
+    class: "border-orange-600/20 text-orange-400 bg-orange-600/5",
+    icon: "Gitlab",
+  },
+  NOTION: {
+    name: "Notion",
+    class: "border-neutral-500/20 text-neutral-300 bg-neutral-500/5",
+    icon: "Notion",
+  },
+  VS: {
+    name: "Visual Studio",
+    class: "border-purple-500/20 text-purple-400 bg-purple-500/5",
+    icon: "VisualStudio",
+  },
+  VSCODE: {
+    name: "VS Code",
+    class: "border-blue-500/20 text-blue-400 bg-blue-500/5",
+    icon: "VsCode",
+  },
 } satisfies Record<string, Technology>;

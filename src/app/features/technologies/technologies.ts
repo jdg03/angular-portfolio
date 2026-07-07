@@ -154,7 +154,7 @@ export class TechnologiesComponent {
       ]
     },
     {
-      nombre: { es: "Bases de Datos y Herramientas", en: "Databases & Tools" },
+      nombre: { es: "Bases de Datos", en: "Databases" },
       items: [
         {
           ...TECHNOLOGIES.SQLSERVER,
@@ -182,24 +182,65 @@ export class TechnologiesComponent {
           },
           glowClass: 'hover:border-emerald-600/40 hover:shadow-[0_0_25px_rgba(5,150,105,0.25)]',
           brandColorClass: 'bg-emerald-600'
+        }
+      ]
+    },
+    {
+      nombre: { es: "Herramientas", en: "Tools" },
+      items: [
+        {
+          ...TECHNOLOGIES.GITHUB,
+          useCase: {
+            es: 'Control de versiones, flujos de trabajo en equipo, ramas GitFlow e integración continua básica.',
+            en: 'Version control, team workflows, GitFlow branches, and basic continuous integration.'
+          },
+          glowClass: 'hover:border-slate-400/40 hover:shadow-[0_0_25px_rgba(148,163,184,0.25)]',
+          brandColorClass: 'bg-slate-400'
+        },
+        {
+          ...TECHNOLOGIES.GITLAB,
+          useCase: {
+            es: 'Integración y despliegue continuos (CI/CD pipelines), control de versiones y gestión ágil de proyectos.',
+            en: 'Continuous integration and deployment (CI/CD pipelines), version control, and agile project management.'
+          },
+          glowClass: 'hover:border-orange-500/40 hover:shadow-[0_0_25px_rgba(249,115,22,0.25)]',
+          brandColorClass: 'bg-orange-500'
         },
         {
           ...TECHNOLOGIES.DOCKER,
           useCase: {
-            es: 'Contenedores aislados y despliegue consistente de microservicios e infraestructuras',
-            en: 'Isolated containers and consistent deployment of microservices and infrastructures'
+            es: 'Contenedores aislados y despliegue consistente de microservicios e infraestructuras.',
+            en: 'Isolated containers and consistent deployment of microservices and infrastructures.'
           },
           glowClass: 'hover:border-blue-400/40 hover:shadow-[0_0_25px_rgba(96,165,250,0.25)]',
           brandColorClass: 'bg-blue-400'
         },
         {
-          ...TECHNOLOGIES.GITHUB,
+          ...TECHNOLOGIES.VSCODE,
           useCase: {
-            es: 'Control de versiones estricto, flujos de trabajo en equipo y ramas GitFlow',
-            en: 'Strict version control, team workflows, and GitFlow branches'
+            es: 'Editor de código ágil, personalizable con extensiones para depuración y desarrollo rápido.',
+            en: 'Agile, highly customizable code editor with extensions for debugging and rapid development.'
           },
-          glowClass: 'hover:border-slate-400/40 hover:shadow-[0_0_25px_rgba(148,163,184,0.25)]',
-          brandColorClass: 'bg-slate-400'
+          glowClass: 'hover:border-blue-500/40 hover:shadow-[0_0_25px_rgba(59,130,246,0.25)]',
+          brandColorClass: 'bg-blue-500'
+        },
+        {
+          ...TECHNOLOGIES.VS,
+          useCase: {
+            es: 'IDE potente e integral para desarrollo y depuración avanzada de soluciones .NET, C# y C++.',
+            en: 'Powerful and comprehensive IDE for advanced development and debugging of .NET, C#, and C++ solutions.'
+          },
+          glowClass: 'hover:border-purple-500/40 hover:shadow-[0_0_25px_rgba(168,85,247,0.25)]',
+          brandColorClass: 'bg-purple-500'
+        },
+        {
+          ...TECHNOLOGIES.NOTION,
+          useCase: {
+            es: 'Gestión del conocimiento, documentación técnica, notas de reuniones y planificación ágil.',
+            en: 'Knowledge management, technical documentation, meeting notes, and agile planning.'
+          },
+          glowClass: 'hover:border-neutral-400/40 hover:shadow-[0_0_25px_rgba(163,163,163,0.25)]',
+          brandColorClass: 'bg-neutral-400'
         }
       ]
     },

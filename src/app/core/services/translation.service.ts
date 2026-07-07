@@ -48,8 +48,8 @@ export class TranslationService {
     heroGreet: { es: '¡Hola! Soy', en: "Hi! I'm" },
     heroRole: { es: 'Ingeniero en Sistemas', en: 'Systems Engineer' },
     heroDesc: {
-      es: 'Ingeniero en sistemas con conocimientos en desarrollo de software y bases de datos. Mi objetivo es aportar al crecimiento tecnológico de la empresa mediante el desarrollo de soluciones eficientes, seguras y bien estructuradas.',
-      en: 'Systems Engineer with knowledge in software development and databases. My goal is to contribute to the technological growth of the company by developing efficient, secure, and well-structured solutions.'
+      es: 'Ingeniero en sistemas con conocimientos en desarrollo de software, bases de datos y computación en la nube. Mi objetivo es aportar al crecimiento tecnológico de la empresa mediante el desarrollo de soluciones eficientes, seguras y bien estructuradas.',
+      en: 'Systems Engineer with knowledge in software development, databases, and cloud computing. My goal is to contribute to the technological growth of the company by developing efficient, secure, and well-structured solutions.'
     },
 
     // Experience Section
@@ -81,8 +81,8 @@ export class TranslationService {
     techBadge: { es: 'Habilidades', en: 'Skills' },
     techTitle: { es: 'Tecnologías', en: 'Technologies' },
     techDesc: {
-      es: 'Tecnologías que domino de forma práctica. Pasa el cursor sobre los iconos para explorar los casos de uso.',
-      en: 'Technologies I master in practice. Hover over the icons to explore their use cases.'
+      es: 'Tecnologías con las que he trabajado de forma práctica. Pasa el cursor sobre los iconos para explorar los casos de uso.',
+      en: 'Technologies I have worked with in practice. Hover over the icons to explore their use cases.'
     },
 
     // Certifications Section

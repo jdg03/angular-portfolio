@@ -81,4 +81,14 @@ export const TECHNOLOGIES = {
     class: "border-blue-400/20 text-blue-300 bg-blue-400/5",
     icon: "Docker",
   },
+  GCP: {
+    name: "GCP",
+    class: "border-blue-500/20 text-blue-300 bg-blue-500/5",
+    icon: "Gcp",
+  },
+  AZURE: {
+    name: "Azure",
+    class: "border-sky-600/20 text-sky-300 bg-sky-600/5",
+    icon: "Azure",
+  },
 } satisfies Record<string, Technology>;

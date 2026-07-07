@@ -193,6 +193,29 @@ export class TechnologiesComponent {
           brandColorClass: 'bg-slate-400'
         }
       ]
+    },
+    {
+      nombre: { es: "Computación en la Nube", en: "Cloud Computing" },
+      items: [
+        {
+          ...TECHNOLOGIES.GCP,
+          useCase: {
+            es: 'Despliegues serverless en Cloud Run, Cloud Functions, bases de datos gestionadas en Cloud SQL, almacenamiento NoSQL en Firestore y buckets de Google Cloud Storage.',
+            en: 'Serverless deployments on Cloud Run, Cloud Functions, managed databases in Cloud SQL, NoSQL storage in Firestore, and Google Cloud Storage buckets.'
+          },
+          glowClass: 'hover:border-blue-500/40 hover:shadow-[0_0_25px_rgba(59,130,246,0.25)]',
+          brandColorClass: 'bg-blue-500'
+        },
+        {
+          ...TECHNOLOGIES.AZURE,
+          useCase: {
+            es: 'Despliegue y escalabilidad de aplicaciones mediante Azure App Services e integración de inteligencia artificial conversacional con Azure Bot Services.',
+            en: 'App deployment and scalability using Azure App Services and conversational AI integration with Azure Bot Services.'
+          },
+          glowClass: 'hover:border-sky-600/40 hover:shadow-[0_0_25px_rgba(3,105,161,0.25)]',
+          brandColorClass: 'bg-sky-600'
+        }
+      ]
     }
   ];
 }

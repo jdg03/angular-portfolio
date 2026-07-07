@@ -85,7 +85,6 @@ export const PROJECTS: Project[] = [
     },
     github: "",
     technologies: [TAGS.REACT, TAGS.TAILWIND, TAGS.SUPABASE],
-    link: "https://portfolio-jose-gonzalez.vercel.app/",
     is_active: true,
   },
 ];

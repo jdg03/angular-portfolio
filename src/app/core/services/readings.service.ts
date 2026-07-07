@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
-import { from, Observable } from 'rxjs';
+import { from, Observable, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { BookReading } from '../models/reading.model';
+import { READINGS } from '../constants/readings';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +13,8 @@ export class ReadingsService {
   private readonly supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVjZHRpdGF2eGV6aXFyamt0eGllIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE0NDkzNTQsImV4cCI6MjA3NzAyNTM1NH0.h_YUMe3q70Dnq_P3XDBw6vDpcjKv7nY0TUBThKso3z0';
   private readonly supabase: SupabaseClient = createClient(this.supabaseUrl, this.supabaseKey);
 
-  // Obtiene los libros directamente desde Supabase y los mapea al formato de la app
+  // Obtiene los libros directamente desde Supabase y los mapea al formato de la app.
+  // Si falla (por ejemplo, si se suspende la base de datos), usa la lista local como fallback.
   getReadings(): Observable<BookReading[]> {
     const promise = this.supabase
       .from('books')
@@ -49,6 +52,12 @@ export class ReadingsService {
         });
       });
 
-    return from(promise);
+    return from(promise).pipe(
+      catchError((error) => {
+        console.warn('Supabase error, falling back to local readings data:', error);
+        return of(READINGS);
+      })
+    );
   }
 }
+

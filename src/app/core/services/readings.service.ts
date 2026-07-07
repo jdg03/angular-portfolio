@@ -36,11 +36,21 @@ export class ReadingsService {
             progress = b.progress;
           }
           
+          // Map external Amazon URLs to local assets to avoid hotlinking/CORS block errors
+          let cover = b.image;
+          if (cover === 'https://m.media-amazon.com/images/I/61nAd1sbQVL._SY425_.jpg') {
+            cover = '/books/software-development-az.jpg';
+          } else if (cover === 'https://m.media-amazon.com/images/I/612SvfNVfdL._SY385_.jpg') {
+            cover = '/books/microservices-patterns.jpg';
+          } else if (cover === 'https://m.media-amazon.com/images/I/41fijVG5x7L._SY445_SX342_FMwebp_.jpg') {
+            cover = '/books/clean-architecture.jpg';
+          }
+
           return {
             id: b.id,
             title: b.title,
             author: b.autor,
-            coverImage: b.image,
+            coverImage: cover,
             link: b.link,
             progress,
             totalPages,

@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { createClient, SupabaseClient } from '@supabase/supabase-js';
-import { from, Observable, of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { Injectable, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 import { BookReading } from '../models/reading.model';
 import { READINGS } from '../constants/readings';
 
@@ -9,65 +9,105 @@ import { READINGS } from '../constants/readings';
   providedIn: 'root'
 })
 export class ReadingsService {
-  private readonly supabaseUrl = 'https://ucdtitavxeziqrjktxie.supabase.co';
-  private readonly supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVjZHRpdGF2eGV6aXFyamt0eGllIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE0NDkzNTQsImV4cCI6MjA3NzAyNTM1NH0.h_YUMe3q70Dnq_P3XDBw6vDpcjKv7nY0TUBThKso3z0';
-  private readonly supabase: SupabaseClient = createClient(this.supabaseUrl, this.supabaseKey);
+  private readonly http = inject(HttpClient);
 
-  // Obtiene los libros directamente desde Supabase y los mapea al formato de la app.
-  // Si falla (por ejemplo, si se suspende la base de datos), usa la lista local como fallback.
+  // Reemplaza esta ID con el ID de tu Google Sheet cuando la tengas compartida.
+  private readonly sheetId = '1ucdtitavxeziqrjktxie_placeholder';
+
+  // Obtiene los libros desde Google Sheets y los mapea al formato de la app.
+  // Si falla o no está configurada, usa la lista local como fallback de inmediato.
   getReadings(): Observable<BookReading[]> {
-    const promise = this.supabase
-      .from('books')
-      .select('*')
-      .eq('is_active', true)
-      .order('order_index', { ascending: true })
-      .then(({ data, error }) => {
-        if (error) {
-          console.error('Error fetching books from Supabase:', error);
-          throw error;
-        }
-        return (data || []).map((b: any) => {
-          const pagesRead = b.pages_read || 0;
-          const totalPages = b.total_pages || 0;
-          let progress = 100;
-          if (totalPages > 0) {
-            progress = Math.min(100, Math.max(0, Math.round((pagesRead / totalPages) * 100)));
-          } else if (b.progress !== undefined) {
-            progress = b.progress;
-          }
-          
-          // Map external Amazon URLs to local assets to avoid hotlinking/CORS block errors
-          let cover = b.image;
-          if (cover === 'https://m.media-amazon.com/images/I/61nAd1sbQVL._SY425_.jpg') {
-            cover = '/books/software-development-az.jpg';
-          } else if (cover === 'https://m.media-amazon.com/images/I/612SvfNVfdL._SY385_.jpg') {
-            cover = '/books/microservices-patterns.jpg';
-          } else if (cover === 'https://m.media-amazon.com/images/I/41fijVG5x7L._SY445_SX342_FMwebp_.jpg') {
-            cover = '/books/clean-architecture.jpg';
-          }
+    if (!this.sheetId || this.sheetId.includes('placeholder')) {
+      console.log('Google Sheets ID no configurada. Usando datos locales de respaldo.');
+      return of(READINGS);
+    }
 
-          return {
-            id: b.id,
-            title: b.title,
-            author: b.autor,
-            coverImage: cover,
-            link: b.link,
-            progress,
-            totalPages,
-            pagesRead,
-            description: b.description || 'Lectura técnica recomendada para desarrollo de software y bases de datos.',
-            status: b.status || (progress === 100 ? 'completed' : progress > 0 ? 'reading' : 'want-to-read'),
-            tags: b.tags || ['Tecnología']
-          };
-        });
-      });
+    const url = `https://docs.google.com/spreadsheets/d/${this.sheetId}/gviz/tq?tqx=out:json`;
 
-    return from(promise).pipe(
+    return this.http.get(url, { responseType: 'text' }).pipe(
+      map(response => this.parseGoogleSheet(response)),
       catchError((error) => {
-        console.warn('Supabase error, falling back to local readings data:', error);
+        console.warn('Error al obtener datos de Google Sheets, usando respaldo local:', error);
         return of(READINGS);
       })
     );
+  }
+
+  private parseGoogleSheet(rawText: string): BookReading[] {
+    const match = rawText.match(/google\.visualization\.Query\.setResponse\(([\s\S]*?)\);/);
+    if (!match) {
+      throw new Error('Formato de respuesta de Google Sheets no válido');
+    }
+
+    const json = JSON.parse(match[1]);
+    const table = json.table;
+    if (!table || !table.rows) {
+      return [];
+    }
+
+    // Extraemos las etiquetas de las columnas (ej: "title", "author", "pages_read")
+    const cols = table.cols.map((c: any) => (c.label || '').trim().toLowerCase());
+
+    return table.rows
+      .map((r: any) => {
+        const rowData: any = {};
+        if (r.c) {
+          r.c.forEach((cell: any, index: number) => {
+            const colName = cols[index];
+            if (colName) {
+              rowData[colName] = cell ? cell.v : null;
+            }
+          });
+        }
+        return rowData;
+      })
+      // Filtramos filas que no estén activas o no tengan título
+      .filter((b: any) => b.title && (b.is_active === undefined || b.is_active === true || b.is_active === 'TRUE' || b.is_active === 1))
+      .map((b: any) => {
+        const pagesRead = Number(b.pages_read || 0);
+        const totalPages = Number(b.total_pages || 0);
+        let progress = 100;
+        
+        if (totalPages > 0) {
+          progress = Math.min(100, Math.max(0, Math.round((pagesRead / totalPages) * 100)));
+        } else if (b.progress !== undefined && b.progress !== null) {
+          progress = Number(b.progress);
+        }
+
+        // Map de imágenes de portadas (soporta locales y externas)
+        let cover = b.image || '';
+        if (cover === 'https://m.media-amazon.com/images/I/61nAd1sbQVL._SY425_.jpg') {
+          cover = '/books/software-development-az.jpg';
+        } else if (cover === 'https://m.media-amazon.com/images/I/612SvfNVfdL._SY385_.jpg') {
+          cover = '/books/microservices-patterns.jpg';
+        } else if (cover === 'https://m.media-amazon.com/images/I/41fijVG5x7L._SY445_SX342_FMwebp_.jpg') {
+          cover = '/books/clean-architecture.jpg';
+        }
+
+        // Procesa tags si vienen separados por comas
+        let tags: string[] = ['Tecnología'];
+        if (b.tags) {
+          if (typeof b.tags === 'string') {
+            tags = b.tags.split(',').map((t: string) => t.trim());
+          } else if (Array.isArray(b.tags)) {
+            tags = b.tags;
+          }
+        }
+
+        return {
+          id: b.id ? Number(b.id) : Math.random(),
+          title: b.title,
+          author: b.author || b.autor || '',
+          coverImage: cover,
+          link: b.link || '',
+          progress,
+          totalPages,
+          pagesRead,
+          description: b.description || 'Lectura técnica recomendada para desarrollo de software y bases de datos.',
+          status: b.status || (progress === 100 ? 'completed' : progress > 0 ? 'reading' : 'want-to-read'),
+          tags
+        };
+      });
   }
 }
 

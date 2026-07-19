@@ -1,11 +1,13 @@
 import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { provideRouter, withComponentInputBinding, withInMemoryScrolling } from '@angular/router';
 import { provideAngularQuery, QueryClient } from '@tanstack/angular-query-experimental';
+import { provideHttpClient } from '@angular/common/http';
 
 import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideHttpClient(),
     provideBrowserGlobalErrorListeners(),
     provideRouter(
       routes,

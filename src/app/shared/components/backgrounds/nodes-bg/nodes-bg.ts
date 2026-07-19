@@ -1,4 +1,5 @@
-import { Component, ElementRef, NgZone, OnDestroy, OnInit, ViewChild, inject, input } from '@angular/core';
+import { Component, ElementRef, NgZone, OnDestroy, OnInit, ViewChild, inject, input, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 interface Particle {
   x: number;
@@ -39,6 +40,8 @@ interface Particle {
 })
 export class NodesBackgroundComponent implements OnInit, OnDestroy {
   private readonly ngZone = inject(NgZone);
+  private readonly platformId = inject(PLATFORM_ID);
+  private readonly isBrowser = isPlatformBrowser(this.platformId);
 
   // Input signal to dynamically control background color from switcher
   bgColor = input<string>('#0b1326');
@@ -74,6 +77,9 @@ export class NodesBackgroundComponent implements OnInit, OnDestroy {
   };
 
   ngOnInit() {
+    if (!this.isBrowser) {
+      return;
+    }
     this.initCanvas();
     this.initParticles();
 
@@ -88,6 +94,9 @@ export class NodesBackgroundComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    if (!this.isBrowser) {
+      return;
+    }
     if (this.animationFrameId) {
       cancelAnimationFrame(this.animationFrameId);
     }

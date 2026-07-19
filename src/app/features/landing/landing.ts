@@ -1,4 +1,5 @@
-import { Component, HostListener, computed, signal, inject } from '@angular/core';
+import { Component, HostListener, computed, signal, inject, OnInit } from '@angular/core';
+import { Meta } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
 import { GlassCardComponent } from '../../shared/components/glass-card/glass-card';
 import { TechBadgeComponent } from '../../shared/components/tech-badge/tech-badge';
@@ -27,10 +28,17 @@ import { TranslationService } from '../../core/services/translation.service';
   ],
   templateUrl: './landing.html'
 })
-export class LandingComponent {
+export class LandingComponent implements OnInit {
   private readonly translationService = inject(TranslationService);
+  private readonly meta = inject(Meta);
   protected readonly ui = this.translationService.ui;
   protected readonly lang = this.translationService.lang;
+
+  ngOnInit() {
+    this.meta.updateTag({ name: 'description', content: 'Portafolio profesional de José González, Ingeniero en Sistemas. Soluciones en desarrollo de software, bases de datos y computación en la nube.' });
+    this.meta.updateTag({ property: 'og:title', content: 'José González | Ingeniero en Sistemas' });
+    this.meta.updateTag({ property: 'og:description', content: 'Portafolio profesional de José González. Conoce mi experiencia, proyectos y biblioteca técnica de lecturas.' });
+  }
 
   // Signals capturing normalized mouse coordinates (from 0.0 to 1.0)
   private readonly mouseX = signal<number>(0.5);

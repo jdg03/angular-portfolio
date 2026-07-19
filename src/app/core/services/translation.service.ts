@@ -12,7 +12,12 @@ export type Lang = 'es' | 'en';
 })
 export class TranslationService {
   private readonly langSignal = signal<Lang>(
-    (localStorage.getItem('portfolio-lang') as Lang) || 'es'
+    (() => {
+      if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+        return (localStorage.getItem('portfolio-lang') as Lang) || 'es';
+      }
+      return 'es';
+    })()
   );
 
   readonly lang = this.langSignal.asReadonly();
@@ -26,7 +31,9 @@ export class TranslationService {
 
   setLanguage(lang: Lang) {
     this.langSignal.set(lang);
-    localStorage.setItem('portfolio-lang', lang);
+    if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+      localStorage.setItem('portfolio-lang', lang);
+    }
   }
 
   toggleLanguage() {

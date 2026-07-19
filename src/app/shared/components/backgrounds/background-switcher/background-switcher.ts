@@ -36,18 +36,22 @@ export class BackgroundSwitcherComponent implements OnInit {
   protected readonly inactiveBtnClass = 'px-3 py-2 rounded-lg bg-surface-container-high/40 backdrop-blur-md border border-white/5 text-on-surface-variant text-[10px] text-left w-full hover:text-white hover:border-primary/20 transition-all cursor-pointer flex items-center gap-2.5';
 
   ngOnInit() {
-    const savedColorId = localStorage.getItem('portfolio-bg-color');
-    if (savedColorId) {
-      const match = this.colorOptions.find(opt => opt.id === savedColorId);
-      if (match) {
-        this.activeColor.set(match);
+    if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+      const savedColorId = localStorage.getItem('portfolio-bg-color');
+      if (savedColorId) {
+        const match = this.colorOptions.find(opt => opt.id === savedColorId);
+        if (match) {
+          this.activeColor.set(match);
+        }
       }
     }
   }
 
   selectColor(option: BgColorOption) {
     this.activeColor.set(option);
-    localStorage.setItem('portfolio-bg-color', option.id);
+    if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+      localStorage.setItem('portfolio-bg-color', option.id);
+    }
   }
 
   toggleCollapse() {

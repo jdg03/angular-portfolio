@@ -1,4 +1,5 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal, OnInit } from '@angular/core';
+import { Meta } from '@angular/platform-browser';
 import { injectQuery } from '@tanstack/angular-query-experimental';
 import { ReadingsService } from '../../core/services/readings.service';
 import { BookReading, ReadingStatus } from '../../core/models/reading.model';
@@ -11,11 +12,18 @@ import { TranslationService } from '../../core/services/translation.service';
   imports: [BookCardComponent],
   templateUrl: './readings.html'
 })
-export class ReadingsComponent {
+export class ReadingsComponent implements OnInit {
   private readonly readingsService = inject(ReadingsService);
   private readonly translationService = inject(TranslationService);
+  private readonly meta = inject(Meta);
   protected readonly ui = this.translationService.ui;
   protected readonly lang = this.translationService.lang;
+
+  ngOnInit() {
+    this.meta.updateTag({ name: 'description', content: 'Mi biblioteca técnica personal. Libros y documentación técnica que leo para mantenerme al día con la industria y mejores prácticas.' });
+    this.meta.updateTag({ property: 'og:title', content: 'Mis Lecturas | José González' });
+    this.meta.updateTag({ property: 'og:description', content: 'Biblioteca técnica y lecturas profesionales de José González.' });
+  }
 
   // Filtro activo de la UI ('ALL' | 'reading' | 'completed' | 'want-to-read')
   protected readonly activeFilter = signal<ReadingStatus | 'ALL'>('ALL');

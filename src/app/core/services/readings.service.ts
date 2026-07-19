@@ -12,7 +12,7 @@ export class ReadingsService {
   private readonly http = inject(HttpClient);
 
   // Reemplaza esta ID con el ID de tu Google Sheet cuando la tengas compartida.
-  private readonly sheetId = '1ucdtitavxeziqrjktxie_placeholder';
+  private readonly sheetId = '15LEP_cpLUcS8XJA9T-9JpUVUulGNOX79r7hIIegDnCs';
 
   // Obtiene los libros desde Google Sheets y los mapea al formato de la app.
   // Si falla o no está configurada, usa la lista local como fallback de inmediato.

@@ -4,12 +4,14 @@ import { Observable, of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { BookReading } from '../models/reading.model';
 import { READINGS } from '../constants/readings';
+import { TranslationService } from './translation.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReadingsService {
   private readonly http = inject(HttpClient);
+  private readonly translationService = inject(TranslationService);
 
   // Reemplaza esta ID con el ID de tu Google Sheet cuando la tengas compartida.
   private readonly sheetId = '15LEP_cpLUcS8XJA9T-9JpUVUulGNOX79r7hIIegDnCs';
@@ -64,6 +66,20 @@ export class ReadingsService {
       // Filtramos filas que no estén activas o no tengan título
       .filter((b: any) => b.title && (b.is_active === undefined || b.is_active === true || b.is_active === 'TRUE' || b.is_active === 1))
       .map((b: any) => {
+        const lang = this.translationService.lang();
+
+        // Resolvemos título en base al idioma
+        let title = b.title || '';
+        if (lang === 'en' && b.title_en) {
+          title = b.title_en;
+        }
+
+        // Resolvemos descripción en base al idioma
+        let description = b.description || 'Lectura técnica recomendada para desarrollo de software y bases de datos.';
+        if (lang === 'en' && b.description_en) {
+          description = b.description_en;
+        }
+
         const pagesRead = Number(b.pages_read || 0);
         const totalPages = Number(b.total_pages || 0);
         let progress = 100;
@@ -85,25 +101,50 @@ export class ReadingsService {
         }
 
         // Procesa tags si vienen separados por comas
+        let rawTags = b.tags;
+        if (lang === 'en' && b.tags_en) {
+          rawTags = b.tags_en;
+        }
+
         let tags: string[] = ['Tecnología'];
-        if (b.tags) {
-          if (typeof b.tags === 'string') {
-            tags = b.tags.split(',').map((t: string) => t.trim());
-          } else if (Array.isArray(b.tags)) {
-            tags = b.tags;
+        if (rawTags) {
+          if (typeof rawTags === 'string') {
+            tags = rawTags.split(',').map((t: string) => t.trim());
+          } else if (Array.isArray(rawTags)) {
+            tags = rawTags;
           }
+        }
+
+        // Traducción automática de conveniencia para etiquetas técnicas estándar
+        if (lang === 'en' && !b.tags_en) {
+          tags = tags.map(t => {
+            if (t === 'Técnico') return 'Technical';
+            if (t === 'Tecnología') return 'Technology';
+            if (t === 'Microservicios') return 'Microservices';
+            if (t === 'Arquitectura') return 'Architecture';
+            if (t === 'Buenas Prácticas') return 'Best Practices';
+            if (t === 'Metodologías') return 'Methodologies';
+            if (t === 'Ingeniería de Software') return 'Software Engineering';
+            if (t === 'Sistemas Distribuidos') return 'Distributed Systems';
+            if (t === 'Bases de Datos') return 'Databases';
+            if (t === 'Desarrollo Profesional') return 'Professional Development';
+            if (t === 'Productividad') return 'Productivity';
+            if (t === 'Patrones de Diseño') return 'Design Patterns';
+            if (t === 'SOLID') return 'SOLID';
+            return t;
+          });
         }
 
         return {
           id: b.id ? Number(b.id) : Math.random(),
-          title: b.title,
+          title,
           author: b.author || b.autor || '',
           coverImage: cover,
           link: b.link || '',
           progress,
           totalPages,
           pagesRead,
-          description: b.description || 'Lectura técnica recomendada para desarrollo de software y bases de datos.',
+          description,
           status: b.status || (progress === 100 ? 'completed' : progress > 0 ? 'reading' : 'want-to-read'),
           tags
         };

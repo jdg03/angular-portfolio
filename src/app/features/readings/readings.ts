@@ -22,7 +22,7 @@ export class ReadingsComponent {
 
   // Consulta asíncrona gestionada por TanStack Query
   protected readonly readingsQuery = injectQuery(() => ({
-    queryKey: ['readings'],
+    queryKey: ['readings', this.lang()],
     queryFn: () => new Promise<BookReading[]>((resolve, reject) => {
       this.readingsService.getReadings().subscribe({
         next: (data) => resolve(data),

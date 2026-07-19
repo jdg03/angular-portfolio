@@ -5,7 +5,7 @@ export const PROJECTS: Project[] = [
   {
     id: 1,
     title: { es: "Sistema de Inventario", en: "Inventory System" },
-    image: "https://ucdtitavxeziqrjktxie.supabase.co/storage/v1/object/public/images-portfolio/projects/inventorySystem/imagen6.png",
+    image: "/projects/inventory-system.png",
     description: {
       es: "Plataforma web para gestionar los productos de un taller, seguimiento de compras y ventas, y dashboard interactivo como soporte para la toma de decisiones.",
       en: "Web platform to manage workshop products, purchase and sales tracking, and an interactive dashboard to support decision making."
@@ -41,7 +41,7 @@ export const PROJECTS: Project[] = [
   {
     id: 4,
     title: { es: "Detector de lenguaje de señas", en: "Sign Language Detector" },
-    image: "https://ucdtitavxeziqrjktxie.supabase.co/storage/v1/object/public/images-portfolio/projects/signLanguageDetector/imagen2.PNG",
+    image: "/projects/sign-language-detector.png",
     description: {
       es: "Proyecto de inteligencia artificial para reconocer gestos del lenguaje de señas mediante visión computacional y aprendizaje automático.",
       en: "Artificial intelligence project to recognize sign language gestures using computer vision and machine learning."
@@ -53,7 +53,7 @@ export const PROJECTS: Project[] = [
   {
     id: 5,
     title: { es: "Backend de E-commerce", en: "E-commerce Backend" },
-    image: "https://ucdtitavxeziqrjktxie.supabase.co/storage/v1/object/public/images-portfolio/projects/ecommerceAspNet/Imagen1.png",
+    image: "/projects/ecommerce-aspnet.png",
     description: {
       es: "Arquitectura del backend de un ecommerce web, siguiendo patrones de clean architecture, CQRS, Mediator, Fluent Validation y autenticación con identity y JWT.",
       en: "Backend architecture of a web e-commerce, following clean architecture patterns, CQRS, Mediator, Fluent Validation, and authentication with Identity and JWT."
@@ -65,7 +65,7 @@ export const PROJECTS: Project[] = [
   {
     id: 7,
     title: { es: "E-commerce web", en: "Web E-commerce" },
-    image: "https://ucdtitavxeziqrjktxie.supabase.co/storage/v1/object/public/images-portfolio/projects/ecommerceMERN/imagen1.png",
+    image: "/projects/ecommerce-mern.png",
     description: {
       es: "Tienda virtual en línea con una interfaz minimalista, búsquedas eficientes y panel administrativo, pensado para agilizar el proceso de compra sobre todo aquellos negocios que no tienen tienda física y que quieren exponer sus catálogos de una forma más profesional.",
       en: "Online virtual store with a minimalist interface, efficient searches, and admin panel, designed to streamline the purchasing process especially for businesses without a physical store that want to expose their catalogs professionally."

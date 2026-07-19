@@ -22,7 +22,7 @@ export class ReadingsService {
       return of(READINGS);
     }
 
-    const url = `https://docs.google.com/spreadsheets/d/${this.sheetId}/gviz/tq?tqx=out:json`;
+    const url = `https://docs.google.com/spreadsheets/d/${this.sheetId}/gviz/tq?tqx=out:json&sheet=libros`;
 
     return this.http.get(url, { responseType: 'text' }).pipe(
       map(response => this.parseGoogleSheet(response)),

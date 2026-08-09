@@ -104,3 +104,12 @@
 .animate-float {
   animation: float 6s ease-in-out infinite;
 }
+
+/* Scroll Offset & Smooth Scrolling for Anchor Links */
+html {
+  scroll-behavior: smooth;
+}
+
+section[id] {
+  scroll-margin-top: 5.5rem;
+}

@@ -1,59 +1,53 @@
-# PortfolioAngularApp
+# Portfolio Angular 19
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.12.
+Portafolio personal migrado de Astro a Angular 19, siguiendo la metodología **Spec-First** con documentación de decisiones arquitectónicas.
 
-## Development server
+## Stack
 
-To start a local development server, run:
+- **Angular 19** — Standalone Components, Signals, Control Flow (`@if`, `@for`, `@defer`)
+- **Vite + esbuild** — Compilación y HMR ultra-rápido
+- **Tailwind CSS 4** — Estilos utility-first
+- **TanStack Query** — Estado asíncrono con signals
+- **pnpm** — Gestor de paquetes
+- **Vitest** — Testing unitario
+
+## Comandos
 
 ```bash
-ng serve
+pnpm install        # Instalar dependencias
+pnpm run dev        # Servidor de desarrollo (http://localhost:4200)
+pnpm run build      # Build de producción
+pnpm run test       # Ejecutar tests
+pnpm run lint       # Linter
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Estructura
 
-## Code scaffolding
+```
+src/app/
+├── core/              # Services, Guards, Interceptors (globales)
+├── shared/            # Componentes, Directivas, Pipes reutilizables
+├── features/          # Secciones del portafolio
+│   ├── landing/       # Hero & Bento Grid
+│   ├── experience/    # Línea de tiempo laboral
+│   ├── projects/      # Galería de proyectos
+│   ├── tech-stack/    # Mosaico de tecnologías
+│   ├── certifications/
+│   └── readings/      # Sección interactiva de lecturas
+├── app.config.ts      # Proveedores globales
+├── app.component.ts   # Componente raíz
+└── app.routes.ts      # Definición de rutas
+```
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Documentación del Proyecto
+
+- **Decisiones arquitectónicas:** Ver `../decisions.md`
+- **Especificaciones técnicas:** Ver `../specs/`
+- **Diseños Stitch:** Ver `../DESING/`
+
+## Generar Componentes
 
 ```bash
 ng generate component component-name
+ng generate --help    # Ver todos los schematics disponibles
 ```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.

@@ -32,8 +32,8 @@ export class BackgroundSwitcherComponent implements OnInit {
   // Active color defaults to Negro Puro
   protected readonly activeColor = signal<BgColorOption>(this.colorOptions[0]);
 
-  protected readonly activeBtnClass = 'px-3 py-2 rounded-lg bg-primary text-background text-[10px] font-bold shadow-[0_0_10px_#d2bbff30] text-left w-full transition-all cursor-pointer flex items-center gap-2.5';
-  protected readonly inactiveBtnClass = 'px-3 py-2 rounded-lg bg-surface-container-high/40 backdrop-blur-md border border-white/5 text-on-surface-variant text-[10px] text-left w-full hover:text-white hover:border-primary/20 transition-all cursor-pointer flex items-center gap-2.5';
+  protected readonly activeBtnClass = 'px-3 py-2 rounded-lg bg-primary text-background text-[10px] font-bold shadow-[0_0_10px_#d2bbff30] text-left w-full transition-all cursor-pointer flex items-center gap-2.5 focus-visible:ring-2 focus-visible:ring-primary-fixed-dim focus-visible:outline-none';
+  protected readonly inactiveBtnClass = 'px-3 py-2 rounded-lg bg-surface-container-high/40 backdrop-blur-md border border-white/5 text-on-surface-variant text-[10px] text-left w-full hover:text-white hover:border-primary/20 transition-all cursor-pointer flex items-center gap-2.5 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none';
 
   ngOnInit() {
     if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {

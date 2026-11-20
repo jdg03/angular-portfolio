@@ -9,12 +9,12 @@ export const routes: Routes = [
   {
     path: '',
     loadComponent: () => import('./features/landing/landing').then((m) => m.LandingComponent),
-    title: 'José González | Systems Engineer Portfolio',
+    title: 'José González | Ingeniero en Sistemas y desarrollador cloud',
   },
   {
     path: 'lecturas',
     loadComponent: () => import('./features/readings/readings').then((m) => m.ReadingsComponent),
-    title: 'Biblioteca | José González',
+    title: 'Biblioteca técnica | José González',
   },
   {
     path: '**',

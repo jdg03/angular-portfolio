@@ -1,14 +1,13 @@
 import { Component, input, inject } from '@angular/core';
 import { Project } from '../../core/models/project.model';
-import { GlassCardComponent } from '../../shared/components/glass-card/glass-card';
 import { SvgIconComponent } from '../../shared/components/svg-icon/svg-icon';
 import { TranslationService } from '../../core/services/translation.service';
 
 @Component({
   selector: 'app-project-card',
   standalone: true,
-  imports: [GlassCardComponent, SvgIconComponent],
-  templateUrl: './project-card.html'
+  imports: [SvgIconComponent],
+  templateUrl: './project-card.html',
 })
 export class ProjectCardComponent {
   private readonly translationService = inject(TranslationService);

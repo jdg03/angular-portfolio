@@ -1,0 +1,44 @@
+<div class="architecture-art" [attr.data-architecture]="kind()">
+  <img
+    class="architecture-image"
+    [src]="source()"
+    [attr.srcset]="sources()"
+    sizes="(max-width: 760px) 100vw, (max-width: 1200px) 75vw, 60vw"
+    [alt]="flow().title + '. ' + flow().description"
+    width="851"
+    height="315"
+    fetchpriority="high"
+    (load)="imageLoaded()"
+  />
+  <svg
+    class="flow-overlay"
+    viewBox="0 0 851 315"
+    aria-hidden="true"
+    focusable="false"
+    [attr.data-running]="running()"
+    [style.--flow-accent]="flow().accent"
+  >
+    @for (route of flow().routes; track route.id) {
+      <path class="route-reference" [attr.data-route]="route.id" [attr.d]="route.path" />
+      <circle
+        class="flow-message"
+        [attr.data-message]="route.id"
+        cx="0"
+        cy="0"
+        r="3.2"
+        [style.offset-path]="'path(&quot;' + route.path + '&quot;)'"
+      />
+    }
+    @for (module of flow().modules; track module.id) {
+      <rect
+        class="module-outline"
+        [attr.data-module]="module.id"
+        [attr.x]="module.x"
+        [attr.y]="module.y"
+        [attr.width]="module.width"
+        [attr.height]="module.height"
+        rx="3"
+      />
+    }
+  </svg>
+</div>

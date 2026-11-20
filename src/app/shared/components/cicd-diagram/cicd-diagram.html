@@ -1,0 +1,85 @@
+<svg
+  viewBox="0 0 851 315"
+  [attr.lang]="diagramLanguage()"
+  role="img"
+  [attr.aria-label]="
+    diagramLanguage() === 'es'
+      ? 'Diagrama ilustrativo del flujo de integración y entrega continua'
+      : 'Illustrative continuous integration and delivery flow'
+  "
+  [class.is-running]="running()"
+  [class.css-engine]="variant() === 'css' && !reduced()"
+  [class.motion-preview]="allowMotion()"
+  [attr.data-engine]="variant()"
+>
+  <title>{{ diagramLanguage() === 'es' ? 'Flujo CI/CD' : 'CI/CD workflow' }}</title>
+  <desc>
+    {{
+      diagramLanguage() === 'es'
+        ? 'El código pasa por pruebas, compilación y despliegue. Los indicadores muestran la dirección del flujo; es una simulación ilustrativa.'
+        : 'Code passes through tests, build and deployment. Moving indicators show flow direction; this is an illustrative simulation.'
+    }}
+  </desc>
+  <rect class="canvas" width="851" height="315" />
+  <defs>
+    <marker
+      [attr.id]="'flow-arrow-' + variant()"
+      viewBox="0 0 10 10"
+      refX="9"
+      refY="5"
+      markerWidth="5"
+      markerHeight="5"
+      orient="auto-start-reverse"
+    >
+      <path d="M1 1 9 5 1 9" fill="none" stroke="#9bb2d0" stroke-width="1.5" />
+    </marker>
+  </defs>
+  @for (edge of graph().edges; track edge.id) {
+    <path
+      class="connection"
+      [class.feedback]="edge.feedback"
+      [attr.data-edge]="edge.id"
+      [attr.d]="edge.d"
+      [attr.marker-end]="'url(#flow-arrow-' + variant() + ')'"
+    />
+    <circle
+      class="packet"
+      r="4"
+      cx="0"
+      cy="0"
+      [attr.data-packet]="edge.id"
+      [style.offset-path]="variant() === 'gsap' ? null : 'path(&quot;' + edge.d + '&quot;)'"
+      [style.--delay]="edge.start + 's'"
+      [style.--travel]="edge.duration + 's'"
+    />
+  }
+  @for (node of graph().nodes; track node.id) {
+    <g
+      [attr.data-node]="node.id"
+      [attr.transform]="'translate(' + node.x + ' ' + node.y + ')'"
+      [style.--delay]="node.start + 's'"
+    >
+      <rect class="node-shape" [attr.width]="node.width" [attr.height]="node.height" rx="12" />
+      <g class="node-icon" [attr.transform]="'translate(' + (node.width / 2 - 12) + ' 12)'">
+        <path [attr.d]="node.icon" />
+      </g>
+      <text class="node-label" [attr.x]="node.width / 2" [attr.y]="node.height - 18">
+        {{ node[diagramLanguage()] }}
+      </text>
+    </g>
+  }
+  @if (variant() === 'css') {
+    <path class="group-line" d="M141 210H591M605 210H707" />
+    <text class="group-label" x="366" y="233">CI</text>
+    <text class="group-label" x="656" y="233">CD</text>
+    <text class="feedback-label" x="425" y="285">Feedback</text>
+  } @else if (variant() === 'gsap') {
+    <text class="group-label" x="350" y="18">
+      {{ diagramLanguage() === 'es' ? 'PRUEBAS EN PARALELO' : 'PARALLEL TESTS' }}
+    </text>
+  } @else {
+    <text class="cycle-label" x="425" y="170">
+      {{ diagramLanguage() === 'es' ? 'ENTREGA CONTINUA' : 'CONTINUOUS DELIVERY' }}
+    </text>
+  }
+</svg>

@@ -2,21 +2,26 @@ import { Component, HostListener, inject, signal } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { SvgIconComponent } from '../svg-icon/svg-icon';
 import { TranslationService } from '../../../core/services/translation.service';
+import { BackgroundSwitcherComponent } from '../backgrounds/background-switcher/background-switcher';
 
 @Component({
   selector: 'app-nav-bar',
   standalone: true,
-  imports: [RouterLink, SvgIconComponent],
-  templateUrl: './nav-bar.html'
+  imports: [RouterLink, SvgIconComponent, BackgroundSwitcherComponent],
+  templateUrl: './nav-bar.html',
 })
 export class NavBarComponent {
+  protected readonly navItems = [
+    { id: 'inicio', icon: 'person', label: 'navInicio' },
+    { id: 'experiencia', icon: 'work', label: 'navExperiencia' },
+    { id: 'proyectos', icon: 'grid_view', label: 'navProyectos' },
+    { id: 'tecnologias', icon: 'code', label: 'navTecnologias' },
+    { id: 'certificaciones', icon: 'workspace_premium', label: 'navCertificaciones' },
+    { id: 'credenciales', icon: 'verified', label: 'navCredenciales' },
+    { id: 'lecturas', icon: 'menu_book', label: 'navLecturas' },
+  ] as const;
   private readonly router = inject(Router);
   protected readonly translationService = inject(TranslationService);
-
-  // Active classes with premium glow-dot indicators
-  protected readonly activeClasses = "text-label-mono font-mono text-primary relative after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-1 after:h-1 after:bg-primary after:rounded-full after:shadow-[0_0_8px_#d2bbff] transition-all hover:opacity-80 cursor-pointer";
-  // Inactive classes
-  protected readonly inactiveClasses = "text-label-mono font-mono text-on-surface-variant hover:text-primary transition-colors duration-300 cursor-pointer";
 
   // Active section inside the Landing page or general route
   protected readonly activeSection = signal<string>('inicio');
@@ -37,7 +42,15 @@ export class NavBarComponent {
       return;
     }
 
-    const sections = ['inicio', 'experiencia', 'proyectos', 'tecnologias', 'certificaciones', 'lecturas'];
+    const sections = [
+      'inicio',
+      'experiencia',
+      'proyectos',
+      'tecnologias',
+      'certificaciones',
+      'credenciales',
+      'lecturas',
+    ];
     const scrollPosition = window.scrollY + 200; // Offset for trigger
 
     // If we are at the very top, highlight "inicio"
@@ -49,7 +62,7 @@ export class NavBarComponent {
     for (const section of sections) {
       const element = document.getElementById(section);
       if (element) {
-        const top = element.offsetTop;
+        const top = element.getBoundingClientRect().top + window.scrollY;
         const height = element.offsetHeight;
         if (scrollPosition >= top && scrollPosition < top + height) {
           this.activeSection.set(section);
@@ -62,11 +75,11 @@ export class NavBarComponent {
   // Check if a section is active
   isSectionActive(section: string): boolean {
     const currentUrl = this.router.url.split('#')[0];
-    
+
     if (currentUrl === '/lecturas') {
       return section === 'lecturas';
     }
-    
+
     return this.activeSection() === section;
   }
 
@@ -75,7 +88,14 @@ export class NavBarComponent {
   }
 
   toggleMenu() {
-    this.isMenuOpen.update(prev => !prev);
+    this.isMenuOpen.update((prev) => !prev);
+  }
+
+  @HostListener('document:keydown.escape')
+  onEscape() {
+    if (!this.isMenuOpen()) return;
+    this.closeMenu();
+    document.querySelector<HTMLButtonElement>('.mobile-bar button')?.focus();
   }
 
   closeMenu() {

@@ -1,0 +1,10 @@
+<span class="badge-artwork">
+  <img
+    [src]="badge().image"
+    [alt]="badge().title"
+    loading="lazy"
+    [style.width.%]="(badge().artwork.sourceWidth / badge().artwork.width) * 100"
+    [style.left.%]="(-badge().artwork.x / badge().artwork.width) * 100"
+    [style.top.%]="(-badge().artwork.y / badge().artwork.height) * 100"
+  />
+</span>

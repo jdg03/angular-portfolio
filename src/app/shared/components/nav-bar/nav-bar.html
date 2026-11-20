@@ -1,140 +1,76 @@
-<nav class="fixed top-0 left-0 right-0 z-50 bg-surface/50 backdrop-blur-xl border-b border-outline-variant/10 shadow-sm">
-  <div class="flex justify-between items-center w-full px-gutter max-w-container-max mx-auto h-16">
-    <!-- Brand Logo -->
-    <a routerLink="/" (click)="closeMenu()" class="text-body-md font-bold tracking-tighter text-on-surface hover:opacity-80 transition-opacity cursor-pointer">
-      {{ ui.heroRole[lang()] }}
-    </a>
-
-    <!-- Desktop Navigation Links -->
-    <div class="hidden md:flex items-center gap-8">
-      <a routerLink="/"
-         [class]="isSectionActive('inicio') ? activeClasses : inactiveClasses">
-        {{ ui.navInicio[lang()] }}
-      </a>
-      <a routerLink="/" fragment="experiencia"
-         [class]="isSectionActive('experiencia') ? activeClasses : inactiveClasses">
-        {{ ui.navExperiencia[lang()] }}
-      </a>
-      <a routerLink="/" fragment="proyectos"
-         [class]="isSectionActive('proyectos') ? activeClasses : inactiveClasses">
-        {{ ui.navProyectos[lang()] }}
-      </a>
-      <a routerLink="/" fragment="tecnologias"
-         [class]="isSectionActive('tecnologias') ? activeClasses : inactiveClasses">
-        {{ ui.navTecnologias[lang()] }}
-      </a>
-      <a routerLink="/" fragment="certificaciones"
-         [class]="isSectionActive('certificaciones') ? activeClasses : inactiveClasses">
-        {{ ui.navCertificaciones[lang()] }}
-      </a>
-      <a routerLink="/" fragment="lecturas"
-         [class]="isSectionActive('lecturas') ? activeClasses : inactiveClasses">
-        {{ ui.navLecturas[lang()] }}
-      </a>
-    </div>
-
-    <!-- Right Side controls (Desktop: Socials + Lang, Mobile: Hamburger) -->
-    <div class="flex items-center gap-3">
-      <!-- Desktop controls -->
-      <div class="hidden md:flex items-center gap-3">
-        <!-- Language Switcher -->
-        <button (click)="toggleLanguage()" 
-                class="text-label-mono font-mono text-[10px] font-bold text-on-surface-variant hover:text-primary transition-all duration-200 border border-outline-variant/20 hover:border-primary/30 px-2 py-1 rounded cursor-pointer bg-white/5"
-                [title]="lang() === 'es' ? 'Switch to English' : 'Cambiar a Español'">
-          {{ lang() === 'es' ? 'EN' : 'ES' }}
-        </button>
-
-        <!-- Social Actions -->
-        <div class="flex items-center gap-1.5">
-          <a href="https://github.com/jdg03" target="_blank" rel="noopener noreferrer" 
-             class="text-on-surface-variant hover:text-primary transition-all duration-200 cursor-pointer flex items-center justify-center p-1.5 rounded-lg hover:bg-white/5"
-             title="Perfil de GitHub"
-             aria-label="Perfil de GitHub">
-            <app-svg-icon name="GitHub" size="18"></app-svg-icon>
-          </a>
-          <a href="https://www.linkedin.com/in/josé-david-gonzalez-702611302" target="_blank" rel="noopener noreferrer" 
-             class="text-on-surface-variant hover:text-primary transition-all duration-200 cursor-pointer flex items-center justify-center p-1.5 rounded-lg hover:bg-white/5"
-             title="Perfil de LinkedIn"
-             aria-label="Perfil de LinkedIn">
-            <app-svg-icon name="LinkedIn" size="18"></app-svg-icon>
-          </a>
-        </div>
-      </div>
-
-      <!-- Mobile Hamburger Button -->
-      <button (click)="toggleMenu()" 
-              class="md:hidden text-on-surface hover:text-primary p-2 flex items-center justify-center cursor-pointer transition-colors"
-              [title]="isMenuOpen() ? 'Cerrar menú' : 'Abrir menú'"
-              [attr.aria-expanded]="isMenuOpen()"
-              [attr.aria-label]="isMenuOpen() ? 'Cerrar menú de navegación' : 'Abrir menú de navegación'">
-        <span class="material-symbols-outlined text-[24px]">
-          {{ isMenuOpen() ? 'close' : 'menu' }}
-        </span>
-      </button>
-    </div>
+<div class="mobile-bar">
+  <a routerLink="/" (click)="closeMenu()" class="brand"
+    ><span class="brand-mark">jg<span>.</span></span
+    ><span>José González</span></a
+  ><button
+    type="button"
+    class="icon-button"
+    (click)="toggleMenu()"
+    [attr.aria-expanded]="isMenuOpen()"
+    aria-controls="profile-navigation"
+    [attr.aria-label]="lang() === 'es' ? 'Mostrar navegación' : 'Toggle navigation'"
+  >
+    <span aria-hidden="true" class="material-symbols-outlined">{{
+      isMenuOpen() ? 'close' : 'menu'
+    }}</span>
+  </button>
+</div>
+<aside class="site-sidebar" [class.is-open]="isMenuOpen()">
+  <a routerLink="/" (click)="closeMenu()" class="brand desktop-brand"
+    ><span class="brand-mark">jg<span>.</span></span
+    ><span
+      >José González<small>{{ ui.heroRole[lang()] }}</small></span
+    ></a
+  >
+  <p class="sidebar-label">{{ lang() === 'es' ? 'Explora mi trabajo' : 'Explore my work' }}</p>
+  <nav
+    id="profile-navigation"
+    [attr.aria-label]="lang() === 'es' ? 'Navegación principal' : 'Main navigation'"
+  >
+    @for (item of navItems; track item.id) {
+      <a
+        routerLink="/"
+        [fragment]="item.id"
+        (click)="closeMenu()"
+        class="sidebar-link"
+        [class.is-active]="isSectionActive(item.id)"
+        [attr.aria-current]="isSectionActive(item.id) ? 'location' : null"
+        ><span class="material-symbols-outlined" aria-hidden="true">{{ item.icon }}</span
+        ><span>{{ ui[item.label][lang()] }}</span></a
+      >
+    }
+  </nav>
+  <div class="sidebar-links">
+    <p class="sidebar-label">{{ lang() === 'es' ? 'Conectemos' : 'Let’s connect' }}</p>
+    <a
+      href="https://github.com/jdg03"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="sidebar-link"
+      ><app-svg-icon name="GitHub" size="19"></app-svg-icon><span>GitHub</span
+      ><span class="external-arrow" aria-hidden="true">↗</span></a
+    ><a
+      href="https://www.linkedin.com/in/josé-david-gonzalez-702611302"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="sidebar-link"
+      ><app-svg-icon name="LinkedIn" size="19"></app-svg-icon><span>LinkedIn</span
+      ><span class="external-arrow" aria-hidden="true">↗</span></a
+    >
   </div>
-
-  <!-- Mobile Navigation Dropdown Drawer -->
-  <div class="md:hidden fixed top-16 left-0 right-0 bg-[#0b1326]/95 backdrop-blur-2xl border-b border-outline-variant/10 shadow-[0_15px_30px_rgba(0,0,0,0.5)] overflow-hidden transition-all duration-300 ease-in-out z-40 flex flex-col p-6 gap-6"
-       [class.max-h-0]="!isMenuOpen()"
-       [class.opacity-0]="!isMenuOpen()"
-       [class.pointer-events-none]="!isMenuOpen()"
-       [class.max-h-[450px]]="isMenuOpen()"
-       [class.opacity-100]="isMenuOpen()">
-       
-       <!-- Nav Links -->
-       <div class="flex flex-col gap-4">
-         <a routerLink="/" (click)="closeMenu()"
-            [class]="isSectionActive('inicio') ? activeClasses + ' block pb-1 text-center w-full' : inactiveClasses + ' block pb-1 text-center w-full'">
-           {{ ui.navInicio[lang()] }}
-         </a>
-         <a routerLink="/" fragment="experiencia" (click)="closeMenu()"
-            [class]="isSectionActive('experiencia') ? activeClasses + ' block pb-1 text-center w-full' : inactiveClasses + ' block pb-1 text-center w-full'">
-           {{ ui.navExperiencia[lang()] }}
-         </a>
-         <a routerLink="/" fragment="proyectos" (click)="closeMenu()"
-            [class]="isSectionActive('proyectos') ? activeClasses + ' block pb-1 text-center w-full' : inactiveClasses + ' block pb-1 text-center w-full'">
-           {{ ui.navProyectos[lang()] }}
-         </a>
-         <a routerLink="/" fragment="tecnologias" (click)="closeMenu()"
-            [class]="isSectionActive('tecnologias') ? activeClasses + ' block pb-1 text-center w-full' : inactiveClasses + ' block pb-1 text-center w-full'">
-           {{ ui.navTecnologias[lang()] }}
-         </a>
-         <a routerLink="/" fragment="certificaciones" (click)="closeMenu()"
-            [class]="isSectionActive('certificaciones') ? activeClasses + ' block pb-1 text-center w-full' : inactiveClasses + ' block pb-1 text-center w-full'">
-           {{ ui.navCertificaciones[lang()] }}
-         </a>
-         <a routerLink="/" fragment="lecturas" (click)="closeMenu()"
-            [class]="isSectionActive('lecturas') ? activeClasses + ' block pb-1 text-center w-full' : inactiveClasses + ' block pb-1 text-center w-full'">
-           {{ ui.navLecturas[lang()] }}
-         </a>
-       </div>
-       
-       <!-- Divider line -->
-       <div class="h-px bg-white/5"></div>
-       
-       <!-- Mobile Social & Language row -->
-       <div class="flex items-center justify-between gap-4">
-         <!-- Social Icons -->
-         <div class="flex items-center gap-3">
-           <a href="https://github.com/jdg03" target="_blank" rel="noopener noreferrer" 
-              class="text-on-surface-variant hover:text-primary transition-all duration-200 cursor-pointer flex items-center justify-center p-2 rounded-lg hover:bg-white/5"
-              aria-label="Perfil de GitHub">
-             <app-svg-icon name="GitHub" size="20"></app-svg-icon>
-           </a>
-           <a href="https://www.linkedin.com/in/josé-david-gonzalez-702611302" target="_blank" rel="noopener noreferrer" 
-              class="text-on-surface-variant hover:text-primary transition-all duration-200 cursor-pointer flex items-center justify-center p-2 rounded-lg hover:bg-white/5"
-              aria-label="Perfil de LinkedIn">
-             <app-svg-icon name="LinkedIn" size="20"></app-svg-icon>
-           </a>
-         </div>
-         
-         <!-- Language Selector -->
-         <button (click)="toggleLanguage()" 
-                 class="text-label-mono font-mono text-[10px] font-bold text-on-surface-variant hover:text-primary transition-all duration-200 border border-outline-variant/20 hover:border-primary/30 px-3 py-1.5 rounded cursor-pointer bg-white/5"
-                 aria-label="Cambiar idioma">
-           {{ lang() === 'es' ? 'ENGLISH (EN)' : 'ESPAÑOL (ES)' }}
-         </button>
-       </div>
+  <div class="sidebar-bottom">
+    <app-background-switcher></app-background-switcher>
+    <button
+      type="button"
+      (click)="toggleLanguage()"
+      class="language-button"
+      [attr.aria-label]="lang() === 'es' ? 'Switch to English' : 'Cambiar a español'"
+    >
+      <span class="material-symbols-outlined" aria-hidden="true">language</span
+      ><span>{{ lang() === 'es' ? 'Español' : 'English' }}</span
+      ><span class="language-target">{{ lang() === 'es' ? 'EN' : 'ES' }}</span></button
+    ><span class="sidebar-note">{{
+      lang() === 'es' ? 'Un poco de lo que construyo.' : 'A little of what I build.'
+    }}</span>
   </div>
-</nav>
+</aside>

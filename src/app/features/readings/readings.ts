@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal, OnInit } from '@angular/core';
+import { Component, computed, inject, input, signal, OnInit } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import { injectQuery } from '@tanstack/angular-query-experimental';
 import { ReadingsService } from '../../core/services/readings.service';
@@ -10,9 +10,10 @@ import { TranslationService } from '../../core/services/translation.service';
   selector: 'app-readings',
   standalone: true,
   imports: [BookCardComponent],
-  templateUrl: './readings.html'
+  templateUrl: './readings.html',
 })
 export class ReadingsComponent implements OnInit {
+  readonly embedded = input(false);
   private readonly readingsService = inject(ReadingsService);
   private readonly translationService = inject(TranslationService);
   private readonly meta = inject(Meta);
@@ -20,9 +21,17 @@ export class ReadingsComponent implements OnInit {
   protected readonly lang = this.translationService.lang;
 
   ngOnInit() {
-    this.meta.updateTag({ name: 'description', content: 'Mi biblioteca técnica personal. Libros y documentación técnica que leo para mantenerme al día con la industria y mejores prácticas.' });
-    this.meta.updateTag({ property: 'og:title', content: 'Mis Lecturas | José González' });
-    this.meta.updateTag({ property: 'og:description', content: 'Biblioteca técnica y lecturas profesionales de José González.' });
+    if (this.embedded()) return;
+    this.meta.updateTag({
+      name: 'description',
+      content:
+        'Mi biblioteca técnica personal. Libros y documentación técnica que leo para mantenerme al día con la industria y mejores prácticas.',
+    });
+    this.meta.updateTag({ property: 'og:title', content: 'Biblioteca | José González' });
+    this.meta.updateTag({
+      property: 'og:description',
+      content: 'Biblioteca técnica y lecturas profesionales de José González.',
+    });
   }
 
   // Filtro activo de la UI ('ALL' | 'reading' | 'completed' | 'want-to-read')
@@ -31,12 +40,13 @@ export class ReadingsComponent implements OnInit {
   // Consulta asíncrona gestionada por TanStack Query
   protected readonly readingsQuery = injectQuery(() => ({
     queryKey: ['readings', this.lang()],
-    queryFn: () => new Promise<BookReading[]>((resolve, reject) => {
-      this.readingsService.getReadings().subscribe({
-        next: (data) => resolve(data),
-        error: (err) => reject(err)
-      });
-    })
+    queryFn: () =>
+      new Promise<BookReading[]>((resolve, reject) => {
+        this.readingsService.getReadings().subscribe({
+          next: (data) => resolve(data),
+          error: (err) => reject(err),
+        });
+      }),
   }));
 
   // Computed Signal: Recalcula y filtra la lista de libros de forma reactiva instantánea
@@ -47,12 +57,8 @@ export class ReadingsComponent implements OnInit {
     if (!queryData) return [];
     if (filter === 'ALL') return queryData;
 
-    return queryData.filter(book => book.status === filter);
+    return queryData.filter((book) => book.status === filter);
   });
-
-  // Estilos de los botones de filtrado
-  protected readonly activeFilterClasses = 'px-4 py-2 rounded-lg bg-primary text-background font-sans text-[10px] font-bold tracking-wide shadow-[0_0_12px_rgba(210,187,255,0.3)] transition-all cursor-pointer';
-  protected readonly inactiveFilterClasses = 'px-4 py-2 rounded-lg bg-surface-container border border-outline-variant/10 text-on-surface-variant font-sans text-[10px] font-semibold tracking-wide hover:text-white hover:border-primary/30 transition-all cursor-pointer';
 
   // Toggle filter signal
   setFilter(filter: ReadingStatus | 'ALL') {

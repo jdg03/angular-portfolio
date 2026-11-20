@@ -1,14 +1,11 @@
 import { Component, input, signal, inject } from '@angular/core';
 import { Certification } from '../../core/models/certification.model';
-import { GlassCardComponent } from '../../shared/components/glass-card/glass-card';
-import { SvgIconComponent } from '../../shared/components/svg-icon/svg-icon';
 import { TranslationService } from '../../core/services/translation.service';
 
 @Component({
   selector: 'app-certification-card',
   standalone: true,
-  imports: [GlassCardComponent, SvgIconComponent],
-  templateUrl: './certification-card.html'
+  templateUrl: './certification-card.html',
 })
 export class CertificationCardComponent {
   private readonly translationService = inject(TranslationService);
@@ -24,6 +21,6 @@ export class CertificationCardComponent {
 
   // Toggle expanded state
   toggleExpanded() {
-    this.isExpanded.update(prev => !prev);
+    this.isExpanded.update((prev) => !prev);
   }
 }

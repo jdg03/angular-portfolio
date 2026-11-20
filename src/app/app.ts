@@ -1,15 +1,15 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavBarComponent } from './shared/components/nav-bar/nav-bar';
 import { FooterComponent } from './shared/components/footer/footer';
-import { BackgroundSwitcherComponent } from './shared/components/backgrounds/background-switcher/background-switcher';
+import { TranslationService } from './core/services/translation.service';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, NavBarComponent, FooterComponent, BackgroundSwitcherComponent],
+  imports: [RouterOutlet, NavBarComponent, FooterComponent],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrl: './app.css',
 })
 export class App {
-  protected readonly title = signal('José González | Systems Engineer');
+  protected readonly lang = inject(TranslationService).lang;
 }

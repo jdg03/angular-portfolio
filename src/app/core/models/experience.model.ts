@@ -10,11 +10,12 @@ export interface Responsibility {
 export interface ExperienceItem {
   title: string | TranslatedText;
   company: string;
+  summary?: string | TranslatedText;
   dateStart: string | TranslatedText;
   dateEnd: string | TranslatedText;
   type: string | TranslatedText;        // e.g. "FULL-TIME"
   modality: string | TranslatedText;    // e.g. "HYBRID"
   responsibilities: Responsibility[];
-  frontendTechs?: string[];
+  frontendTechs?: (string | TranslatedText)[];
   link?: string;
 }

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Animate Diagram Flows"
+  short_description: "Animate architecture diagrams without redrawing"
+  default_prompt: "Use $animate-diagram-flows to animate this diagram while preserving its original artwork."

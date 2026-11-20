@@ -1,0 +1,121 @@
+:host {
+  display: block;
+}
+svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  font-family: Montserrat, sans-serif;
+}
+.canvas {
+  fill: #f5f8fd;
+}
+.connection {
+  fill: none;
+  stroke: #becde1;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.connection.feedback {
+  stroke-dasharray: 4 5;
+}
+.packet {
+  fill: #245ca8;
+  opacity: 0;
+  offset-rotate: 0deg;
+  offset-anchor: 0px 0px;
+  offset-position: 0 0;
+}
+.node-shape {
+  fill: #fff;
+  stroke: #c0cde0;
+  stroke-width: 1.2;
+}
+.node-icon {
+  fill: none;
+  stroke: #245ca8;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.node-label {
+  fill: #17345e;
+  font-size: 12px;
+  font-weight: 650;
+  text-anchor: middle;
+}
+.group-line {
+  fill: none;
+  stroke: #9db8dc;
+  stroke-width: 1;
+}
+.group-label,
+.feedback-label {
+  fill: #315c96;
+  font-size: 11px;
+  font-weight: 650;
+  text-anchor: middle;
+}
+.cycle-label {
+  fill: #315c96;
+  font-size: 13px;
+  font-weight: 650;
+  text-anchor: middle;
+  letter-spacing: 2px;
+}
+.css-engine .node-shape {
+  animation: activate-stage 14s linear infinite;
+  animation-delay: var(--delay);
+  animation-play-state: paused;
+}
+.css-engine .packet {
+  animation: travel 14s linear infinite;
+  animation-delay: var(--delay);
+  animation-play-state: paused;
+}
+.css-engine.is-running .node-shape,
+.css-engine.is-running .packet {
+  animation-play-state: running;
+}
+@keyframes activate-stage {
+  0% {
+    fill: #fff;
+    stroke: #c0cde0;
+  }
+  2%,
+  8% {
+    fill: #dceaff;
+    stroke: #245ca8;
+  }
+  12%,
+  100% {
+    fill: #fff;
+    stroke: #c0cde0;
+  }
+}
+@keyframes travel {
+  0% {
+    opacity: 0;
+    offset-distance: 0%;
+  }
+  1% {
+    opacity: 1;
+    offset-distance: 0%;
+  }
+  6% {
+    opacity: 1;
+    offset-distance: 100%;
+  }
+  7%,
+  100% {
+    opacity: 0;
+    offset-distance: 100%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .css-engine:not(.motion-preview) .node-shape,
+  .css-engine:not(.motion-preview) .packet {
+    animation: none;
+  }
+}

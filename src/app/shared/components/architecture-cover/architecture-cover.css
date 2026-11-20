@@ -1,0 +1,39 @@
+:host {
+  display: block;
+}
+.architecture-art {
+  position: relative;
+  aspect-ratio: 851/315;
+}
+.architecture-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.flow-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.route-reference {
+  fill: none;
+  stroke: none;
+}
+.flow-message {
+  opacity: 0;
+  fill: var(--flow-accent);
+  stroke: #fff;
+  stroke-width: 0.8;
+  offset-anchor: 0px 0px;
+  offset-position: 0 0;
+  offset-rotate: 0deg;
+}
+.module-outline {
+  opacity: 0;
+  fill: none;
+  stroke: var(--flow-accent);
+  stroke-width: 1.4;
+}

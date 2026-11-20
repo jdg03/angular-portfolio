@@ -42,3 +42,10 @@ __screenshots__/
 # System files
 .DS_Store
 Thumbs.db
+
+# Local browser profiles, screenshots and verification evidence
+/.artifacts/
+
+# Local original cover illustrations; animated copies remain included
+/public/covers/*.png
+/public/covers/*.webp

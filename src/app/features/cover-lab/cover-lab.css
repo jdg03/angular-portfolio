@@ -1,0 +1,186 @@
+:host {
+  display: block;
+}
+.cover-lab {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 12px 0 40px;
+}
+.back-link {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  margin-bottom: 18px;
+}
+h1 {
+  font-size: clamp(24px, 3vw, 36px);
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  font-weight: 750;
+  color: var(--text);
+  max-width: 25ch;
+}
+.lab-intro {
+  max-width: 68ch;
+  margin: 16px 0 28px;
+  color: var(--muted);
+  line-height: 1.8;
+  font-size: 14px;
+}
+.variant-picker {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.variant-button {
+  text-align: left;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  color: var(--muted);
+  background: var(--panel);
+  cursor: pointer;
+  min-height: 84px;
+}
+.variant-button:hover {
+  background: var(--control-hover);
+}
+.variant-button[aria-pressed='true'] {
+  border-color: var(--accent);
+  background: var(--nav-active);
+  color: var(--text);
+}
+.variant-name {
+  display: block;
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 700;
+}
+.variant-tool {
+  display: block;
+  font-size: 12px;
+  margin-top: 6px;
+  color: var(--muted);
+}
+.proposal {
+  margin: 0;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--panel);
+}
+.diagram-viewport {
+  overflow-x: auto;
+  background: #f5f8fd;
+}
+.diagram-viewport app-cicd-diagram {
+  width: 100%;
+}
+.diagram-viewport.is-expanded app-cicd-diagram {
+  min-width: 851px;
+}
+figcaption {
+  padding: 22px;
+}
+.proposal figcaption {
+  display: flex;
+  gap: 22px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.proposal-description {
+  flex: 1 1 400px;
+}
+.proposal-description h2 {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.proposal-description p {
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--muted);
+  max-width: 65ch;
+}
+.playback-controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.playback-controls .button {
+  border-color: var(--border);
+  background: var(--panel);
+  color: var(--text);
+  min-height: 44px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 12px;
+}
+.playback-controls .button:hover {
+  background: var(--control-hover);
+}
+.playback-controls .button:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+.material-symbols-outlined {
+  font-size: 18px;
+}
+.lab-note,
+.motion-note {
+  font-size: 12px;
+  line-height: 1.8;
+  color: var(--muted);
+  margin-top: 18px;
+}
+.original-toggle {
+  display: block;
+  margin-top: 14px;
+  min-height: 44px;
+  cursor: pointer;
+}
+.original-cover {
+  margin: 14px 0 0;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.original-cover img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.original-cover figcaption {
+  font-size: 13px;
+  color: var(--muted);
+}
+@media (max-width: 760px) {
+  .variant-picker {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .variant-button {
+    min-height: 64px;
+    padding: 12px 14px;
+  }
+  .variant-name,
+  .variant-tool {
+    display: inline;
+  }
+  .variant-tool {
+    margin-left: 10px;
+  }
+  .proposal figcaption {
+    padding: 16px;
+  }
+  .lab-intro {
+    font-size: 13px;
+    margin-bottom: 20px;
+  }
+  .playback-controls {
+    gap: 6px;
+  }
+}

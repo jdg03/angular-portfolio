@@ -1,0 +1,178 @@
+<section class="cover-lab" aria-labelledby="lab-title">
+  <a routerLink="/" class="text-link back-link"
+    >← {{ lang() === 'es' ? 'Volver al portafolio' : 'Back to portfolio' }}</a
+  >
+  <h1 id="lab-title">
+    {{ lang() === 'es' ? 'Una portada que explica el flujo' : 'A cover that explains the flow' }}
+  </h1>
+  <p class="lab-intro">
+    {{
+      lang() === 'es'
+        ? 'Tres formas de contar el mismo proceso. Prueba cada propuesta y compara su movimiento antes de elegir la portada.'
+        : 'Three ways to tell the same process. Try each proposal and compare its motion before choosing a cover.'
+    }}
+  </p>
+
+  <div
+    class="variant-picker"
+    role="group"
+    [attr.aria-label]="lang() === 'es' ? 'Propuesta de portada' : 'Cover proposal'"
+  >
+    @for (item of variants; track item.id) {
+      <button
+        type="button"
+        class="variant-button"
+        [attr.data-variant]="item.id"
+        [attr.aria-pressed]="selected() === item.id"
+        (click)="select(item.id)"
+      >
+        <span class="variant-name">{{ item.name[lang()] }}</span>
+        <span class="variant-tool">{{ item.tool }}</span>
+      </button>
+    }
+  </div>
+
+  <figure class="proposal">
+    <div
+      class="diagram-viewport"
+      [class.is-expanded]="expanded()"
+      tabindex="0"
+      [attr.aria-label]="
+        lang() === 'es'
+          ? 'Vista previa de la portada; desplázate horizontalmente cuando esté ampliada'
+          : 'Cover preview; scroll horizontally when enlarged'
+      "
+    >
+      <app-cicd-diagram
+        [variant]="selected()"
+        labelLanguage="en"
+        [paused]="paused()"
+        [restartToken]="restartToken()"
+        [allowMotion]="motionAllowed()"
+        (unavailable)="engineUnavailable.set($event)"
+      />
+    </div>
+    <figcaption>
+      <div class="proposal-description">
+        <h2>{{ current().name[lang()] }}</h2>
+        <p>{{ current().description[lang()] }}</p>
+      </div>
+      <div
+        class="playback-controls"
+        role="group"
+        [attr.aria-label]="lang() === 'es' ? 'Reproducción' : 'Playback'"
+      >
+        <button
+          class="button"
+          type="button"
+          data-action="pause"
+          [disabled]="engineUnavailable()"
+          (click)="togglePlayback()"
+        >
+          <span class="material-symbols-outlined" aria-hidden="true">{{
+            paused() || staticPreview() ? 'play_arrow' : 'pause'
+          }}</span>
+          {{
+            lang() === 'es'
+              ? paused() || staticPreview()
+                ? 'Reproducir'
+                : 'Pausar'
+              : paused() || staticPreview()
+                ? 'Play'
+                : 'Pause'
+          }}
+        </button>
+        <button
+          class="button"
+          type="button"
+          data-action="restart"
+          [disabled]="engineUnavailable()"
+          (click)="restart()"
+        >
+          <span class="material-symbols-outlined" aria-hidden="true">replay</span>
+          {{ lang() === 'es' ? 'Reiniciar' : 'Restart' }}
+        </button>
+        <button
+          class="button"
+          type="button"
+          data-action="expand"
+          [attr.aria-pressed]="expanded()"
+          (click)="expanded.set(!expanded())"
+        >
+          <span class="material-symbols-outlined" aria-hidden="true">{{
+            expanded() ? 'zoom_out' : 'zoom_in'
+          }}</span>
+          {{
+            lang() === 'es' ? (expanded() ? 'Ajustar' : 'Ampliar') : expanded() ? 'Fit' : 'Enlarge'
+          }}
+        </button>
+      </div>
+    </figcaption>
+  </figure>
+
+  @if (engineUnavailable()) {
+    <p class="motion-note" role="status">
+      {{
+        lang() === 'es'
+          ? 'No se pudo cargar esta animación. Puedes probar otra propuesta; el diagrama sigue disponible.'
+          : 'This animation could not load. Try another proposal; the diagram remains available.'
+      }}
+    </p>
+  } @else if (staticPreview()) {
+    <p class="motion-note" role="status">
+      {{
+        lang() === 'es'
+          ? 'Tu dispositivo tiene activada la reducción de movimiento. Pulsa Reproducir para probar la animación en este comparador.'
+          : 'Your device has reduced motion enabled. Press Play to try the animation in this preview.'
+      }}
+    </p>
+  }
+  @if (reduced() && motionAllowed()) {
+    <button
+      class="text-link original-toggle"
+      type="button"
+      data-action="preference"
+      (click)="useDevicePreference()"
+    >
+      {{
+        lang() === 'es' ? 'Volver a la preferencia del dispositivo' : 'Restore device preference'
+      }}
+    </button>
+  }
+  <p class="lab-note">
+    {{
+      lang() === 'es'
+        ? 'Simulación ilustrativa · Proporción 851 × 315 · La portada actual sigue en el perfil.'
+        : 'Illustrative simulation · 851 × 315 ratio · Your current cover remains on the profile.'
+    }}
+  </p>
+  <button
+    class="text-link original-toggle"
+    type="button"
+    [attr.aria-expanded]="showOriginal()"
+    aria-controls="original-cover"
+    (click)="showOriginal.set(!showOriginal())"
+  >
+    {{
+      lang() === 'es'
+        ? showOriginal()
+          ? 'Ocultar portada actual'
+          : 'Comparar con la portada actual'
+        : showOriginal()
+          ? 'Hide current cover'
+          : 'Compare with the current cover'
+    }}
+  </button>
+  @if (showOriginal()) {
+    <figure id="original-cover" class="original-cover">
+      <app-cicd-diagram variant="native" labelLanguage="en" [paused]="true" />
+      <figcaption>
+        {{
+          lang() === 'es'
+            ? 'Portada estática actual del tema claro'
+            : 'Current static light-theme cover'
+        }}
+      </figcaption>
+    </figure>
+  }
+</section>

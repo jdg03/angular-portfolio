@@ -1,0 +1,19 @@
+:host {
+  display: block;
+  min-width: 0;
+}
+.badge-artwork {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1.1;
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #fff;
+}
+img {
+  position: absolute;
+  display: block;
+  max-width: none;
+  height: auto;
+}

@@ -1,140 +1,134 @@
-<section id="inicio" class="relative pt-32 pb-section-padding overflow-hidden">
-  
-  <!-- Interactive Background Glow (Luminescence Parallax) -->
-  <div class="absolute inset-0 pointer-events-none z-0 overflow-hidden">
-    <div class="glow-overlay absolute inset-0 w-full h-full transition-transform duration-300 ease-out"
-         [style.transform]="glowTransform()"></div>
+<div class="profile-layout">
+  <div class="profile-column">
+    <article class="profile-panel" aria-labelledby="profile-name">
+      <header id="inicio" class="profile-header">
+        <div class="profile-cover animated-profile-cover">
+          @if (isCicdCover()) {
+            <app-cicd-diagram variant="native" labelLanguage="en" [allowMotion]="true" />
+          } @else {
+            <app-architecture-cover [kind]="architectureKind()" [allowMotion]="true" />
+          }
+        </div>
+
+        <div class="profile-identity">
+          <div class="avatar-row">
+            <div class="profile-avatar" aria-hidden="true">JG<span>.</span></div>
+            <a href="mailto:gonzalez5.jose52@gmail.com" class="button button-primary"
+              ><span class="material-symbols-outlined" aria-hidden="true">mail</span
+              >{{ lang() === 'es' ? 'Contactar' : 'Get in touch' }}</a
+            >
+          </div>
+          <h1 id="profile-name">
+            José González<span class="profile-dot" aria-hidden="true"></span>
+          </h1>
+          <p class="profile-role">{{ ui.heroRole[lang()] }}</p>
+          <div class="profile-meta">
+            <span>{{ currentExperience.company }}</span
+            ><span aria-hidden="true">·</span><span>{{ translate(currentExperience.title) }}</span>
+          </div>
+          <div class="profile-links">
+            <a href="https://github.com/jdg03" target="_blank" rel="noopener noreferrer"
+              ><app-svg-icon name="GitHub" size="17"></app-svg-icon>jdg03<span aria-hidden="true"
+                >↗</span
+              ></a
+            ><a
+              href="https://www.linkedin.com/in/josé-david-gonzalez-702611302"
+              target="_blank"
+              rel="noopener noreferrer"
+              ><app-svg-icon name="LinkedIn" size="17"></app-svg-icon>LinkedIn<span
+                aria-hidden="true"
+                >↗</span
+              ></a
+            >
+          </div>
+        </div>
+      </header>
+      <section id="sobre-mi" class="content-section about-section" aria-labelledby="about-title">
+        <h2 id="about-title">{{ lang() === 'es' ? 'Sobre mí' : 'About me' }}</h2>
+        <p class="about-copy">{{ ui.heroDesc[lang()] }}</p>
+        <div class="specialties">
+          <span>{{ lang() === 'es' ? 'Desarrollo de software' : 'Software development' }}</span
+          ><span>{{ lang() === 'es' ? 'Bases de datos' : 'Databases' }}</span
+          ><span>{{ lang() === 'es' ? 'Computación en la nube' : 'Cloud computing' }}</span>
+        </div>
+      </section>
+      <app-experience></app-experience><app-projects></app-projects
+      ><app-technologies></app-technologies><app-certifications></app-certifications
+      ><app-credentials></app-credentials>
+    </article>
+    <div class="profile-panel library-panel"><app-readings [embedded]="true"></app-readings></div>
   </div>
-
-  <div class="relative z-10 max-w-container-max mx-auto px-gutter text-center">
-    
-
-
-    <!-- Title Hero -->
-    <h1 class="font-display text-4xl md:text-7xl font-bold mb-6 tracking-tight leading-none text-on-surface">
-      {{ ui.heroGreet[lang()] }} <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary-fixed-dim to-secondary">José González</span>
-    </h1>
-
-    <!-- Subtitle Description -->
-    <p class="font-sans text-base md:text-xl text-on-surface-variant max-w-3xl mx-auto mb-12 leading-relaxed">
-      {{ ui.heroDesc[lang()] }}
-    </p>
-
-    <!-- Call to Actions -->
-    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-      <app-glowing-button variant="primary" link="https://github.com/jdg03" icon="terminal">
-        GitHub
-      </app-glowing-button>
-      <app-glowing-button variant="secondary" link="mailto:gonzalez5.jose52@gmail.com" icon="mail">
-        Email
-      </app-glowing-button>
-    </div>
-  </div>
-
-  <!-- Bento Grid Showcase Section (Hidden but kept in code) -->
-  @if (false) {
-    <div class="relative z-10 max-w-container-max mx-auto px-gutter mt-24">
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-4">
-        <!-- Bento 1: Large Case Study Card (Col-Span 8) [HIDDEN/COMMENTED OUT]
-        <div class="md:col-span-8">
-          <app-glass-card>
-            <div class="flex flex-col h-full justify-between gap-6">
-              <div>
-                <div class="text-label-mono font-mono text-[11px] text-primary mb-3 tracking-widest uppercase">Caso de Estudio</div>
-                <h3 class="font-display text-2xl md:text-3xl font-bold mb-3 text-on-surface leading-tight">Optimización de Arquitecturas de Datos</h3>
-                <p class="font-sans text-sm text-on-surface-variant leading-relaxed">Implementación de solutions escalables para el procesamiento de información en tiempo real.</p>
-              </div>
-              <div class="relative overflow-hidden rounded-2xl h-64 border border-outline-variant/10">
-                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDj14eZtjWSVKdA5AVNMG3KPeujyGpYGyW7KQGX60d1itf-xTMZF8wHK5pQuRNC1k4KM3_b8Zv-WoCHlGlpkINoZINbcovLIeV2UoMrthcYtLsPXpwXHYPi3VrxG6lou9Dax2HTd0j7-_8RhrY8vqLtZS0L3e9an8w8r-X5-7jtpjOdlPgnEdVk5v5irGGWpYKEZAeqUreECvMusNf2XHf8jDnYeX8po05kp6JvS59uWUs1BO_BtNS_ONnQ0ejtBaG6ZlHMtIGkemQ" 
-                     alt="Data Architecture Optimization" 
-                     class="w-full h-full object-cover grayscale opacity-50 transition-all duration-700 hover:grayscale-0 hover:opacity-80 hover:scale-105" />
-              </div>
-            </div>
-          </app-glass-card>
+  <aside
+    class="context-rail"
+    [attr.aria-label]="lang() === 'es' ? 'Más sobre mí' : 'More about me'"
+  >
+    <section class="rail-panel">
+      <h2>
+        {{ lang() === 'es' ? 'Actualmente' : 'Currently'
+        }}<span class="status-dot" aria-hidden="true"></span>
+      </h2>
+      <div class="current-job">
+        <span class="company-monogram" aria-hidden="true">{{ currentExperience.company[0] }}</span>
+        <div>
+          <strong>{{ currentExperience.company }}</strong>
+          <p>{{ translate(currentExperience.title) }}</p>
         </div>
-        -->
-
-        <!-- Bento 2: Skills Card 1 - Data Management (Col-Span 6) -->
-        <div class="md:col-span-6">
-          <app-glass-card>
-            <div class="flex flex-col h-full gap-6">
-              <div class="w-12 h-12 rounded-2xl bg-primary-container/10 flex items-center justify-center text-primary">
-                <span class="material-symbols-outlined text-[24px]">database</span>
-              </div>
-              <div>
-                <h4 class="font-display text-xl font-bold mb-3 text-on-surface">Gestión de Datos</h4>
-                <p class="font-sans text-sm text-on-surface-variant leading-relaxed">Experticia en SQL, NoSQL y modelado complejo de esquemas de datos relacionales y documentales.</p>
-              </div>
-              <div class="mt-auto flex flex-wrap gap-2">
-                @for (tech of dbTechs; track tech.name) {
-                  <app-tech-badge [tech]="tech"></app-tech-badge>
-                }
-              </div>
-            </div>
-          </app-glass-card>
-        </div>
-
-        <!-- Bento 3: Skills Card 2 - Development (Col-Span 6) -->
-        <div class="md:col-span-6">
-          <app-glass-card>
-            <div class="flex flex-col h-full gap-6">
-              <div class="w-12 h-12 rounded-2xl bg-primary-container/10 flex items-center justify-center text-primary">
-                <span class="material-symbols-outlined text-[24px]">code</span>
-              </div>
-              <div>
-                <h4 class="font-display text-xl font-bold mb-3 text-on-surface">Desarrollo</h4>
-                <p class="font-sans text-sm text-on-surface-variant leading-relaxed">Creación de microservicios robustos, APIs de alto rendimiento y lógica cohesiva de backend.</p>
-              </div>
-              <div class="mt-auto flex flex-wrap gap-2">
-                @for (tech of devTechs; track tech.name) {
-                  <app-tech-badge [tech]="tech"></app-tech-badge>
-                }
-              </div>
-            </div>
-          </app-glass-card>
-        </div>
-
-        <!-- Bento 4: Mid Card - Scalable Systems (Col-Span 12) -->
-        <div class="md:col-span-12">
-          <app-glass-card>
-            <div class="flex flex-col lg:flex-row items-center gap-8 h-full">
-              <div class="hidden lg:block w-1/3 h-48 rounded-2xl overflow-hidden border border-outline-variant/10 flex-shrink-0">
-                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjf56KnpoMEy2jBFLdAGvC3oyWzuceS-XItenoWMGoI8EKDiag-GtjS_bUm432QcwLcIt9Jsl9aev9hEgOtJ-JZy54z3x1tTzIDf6kQ03jEsVSdSaMZS7C03vyfqpEBjCVFknOGgXCQFPtnnmey5f2say6hlw2SrPD9S1u5gjjAGmcCb5qrMUOpxsNWbci3MhirPV_6eUeSsaQuTJaVY0TqcVND2E9EoKUrimk1eLO_szhSWp2fZEShWMgNFPNPvD2UcW7E56UwAs" 
-                     alt="Code Engineering" 
-                     class="w-full h-full object-cover grayscale opacity-40 hover:grayscale-0 hover:opacity-75 transition-all duration-700" />
-              </div>
-              <div class="flex-grow">
-                <h4 class="font-display text-2xl font-bold mb-3 text-on-surface">Sistemas Escalables</h4>
-                <p class="font-sans text-sm text-on-surface-variant leading-relaxed">Especializado en la construcción de infraestructuras que crecen orgánicamente con las necesidades del negocio, priorizando la seguridad, modularidad y la latencia mínima.</p>
-                <div class="mt-6">
-                  <a routerLink="/" fragment="experiencia" class="inline-flex items-center gap-2 text-primary font-mono text-xs hover:gap-4 transition-all duration-300">
-                    Ver mi trayectoria
-                    <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </app-glass-card>
-        </div>
-
       </div>
-    </div>
-  }
-</section>
-
-<!-- Timeline Experience Section -->
-<app-experience></app-experience>
-
-<!-- Projects Section -->
-<app-projects></app-projects>
-
-<!-- Technologies Section -->
-<app-technologies></app-technologies>
-
-<!-- Certifications Section -->
-<app-certifications></app-certifications>
-
-<!-- Readings Section -->
-<app-readings></app-readings>
-
-
+      <p class="rail-caption">
+        {{ translate(currentExperience.dateStart) }} — {{ translate(currentExperience.dateEnd) }}
+      </p>
+      <div class="tag-list">
+        @for (tech of currentExperience.frontendTechs; track tech) {
+          <span class="tag">{{ translate(tech) }}</span>
+        }
+      </div>
+      <a routerLink="/" fragment="experiencia" class="text-link"
+        >{{ lang() === 'es' ? 'Ver trayectoria' : 'View experience'
+        }}<span aria-hidden="true">↗</span></a
+      >
+    </section>
+    <section class="rail-panel">
+      <h2>
+        {{ ui.credentialsFeatured[lang()]
+        }}<span class="material-symbols-outlined" aria-hidden="true">verified</span>
+      </h2>
+      <div class="rail-badges">
+        @for (badge of featuredCredentials; track badge.id) {
+          <a
+            [href]="badge.image"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="rail-badge"
+            [title]="badge.title"
+            [attr.aria-label]="ui.credentialsView[lang()] + ': ' + badge.title"
+          >
+            <app-badge-artwork [badge]="badge"></app-badge-artwork
+            ><strong>{{ badge.title }}</strong>
+          </a>
+        }
+      </div>
+      <a routerLink="/" fragment="credenciales" class="text-link"
+        >{{ ui.credentialsViewAll[lang()] }} ({{ credentialCount }})<span aria-hidden="true"
+          >↗</span
+        ></a
+      >
+    </section>
+    <section class="rail-note">
+      <span class="material-symbols-outlined" aria-hidden="true">terminal</span>
+      <p>
+        {{
+          lang() === 'es'
+            ? 'Este portafolio también es un proyecto.'
+            : 'This portfolio is a project, too.'
+        }}
+      </p>
+      <a
+        href="https://github.com/jdg03/portfolio-angular"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-link"
+        >{{ ui.footSource[lang()] }}<span aria-hidden="true">↗</span></a
+      >
+    </section>
+  </aside>
+</div>

@@ -1,0 +1,654 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-23T00:00:00-06:00",
+  "title": "Design System: Portafolio de José González",
+  "extensions": {
+    "colorMeta": {
+      "accent": {
+        "role": "primary",
+        "displayName": "Celeste del tema azul",
+        "canonical": "#96caff"
+      },
+      "page": {
+        "role": "neutral",
+        "displayName": "Azul nocturno",
+        "canonical": "#0b1220"
+      },
+      "cover": {
+        "role": "neutral",
+        "displayName": "Petróleo apagado",
+        "tonalRamp": [
+          "oklch(15% 0.0320 198.86)",
+          "oklch(26% 0.0320 198.86)",
+          "oklch(38% 0.0320 198.86)",
+          "oklch(49% 0.0320 198.86)",
+          "oklch(61% 0.0320 198.86)",
+          "oklch(72% 0.0320 198.86)",
+          "oklch(84% 0.0320 198.86)",
+          "oklch(95% 0.0320 198.86)"
+        ]
+      },
+      "panel": {
+        "role": "neutral",
+        "displayName": "panel",
+        "tonalRamp": [
+          "oklch(15% 0.0144 253.17)",
+          "oklch(26% 0.0144 253.17)",
+          "oklch(38% 0.0144 253.17)",
+          "oklch(49% 0.0144 253.17)",
+          "oklch(61% 0.0144 253.17)",
+          "oklch(72% 0.0144 253.17)",
+          "oklch(84% 0.0144 253.17)",
+          "oklch(95% 0.0144 253.17)"
+        ]
+      },
+      "sidebar": {
+        "role": "neutral",
+        "displayName": "sidebar",
+        "tonalRamp": [
+          "oklch(15% 0.0141 253.14)",
+          "oklch(26% 0.0141 253.14)",
+          "oklch(38% 0.0141 253.14)",
+          "oklch(49% 0.0141 253.14)",
+          "oklch(61% 0.0141 253.14)",
+          "oklch(72% 0.0141 253.14)",
+          "oklch(84% 0.0141 253.14)",
+          "oklch(95% 0.0141 253.14)"
+        ]
+      },
+      "raised": {
+        "role": "neutral",
+        "displayName": "raised",
+        "tonalRamp": [
+          "oklch(15% 0.0199 254.85)",
+          "oklch(26% 0.0199 254.85)",
+          "oklch(38% 0.0199 254.85)",
+          "oklch(49% 0.0199 254.85)",
+          "oklch(61% 0.0199 254.85)",
+          "oklch(72% 0.0199 254.85)",
+          "oklch(84% 0.0199 254.85)",
+          "oklch(95% 0.0199 254.85)"
+        ]
+      },
+      "border": {
+        "role": "neutral",
+        "displayName": "border",
+        "tonalRamp": [
+          "oklch(15% 0.0226 256.40)",
+          "oklch(26% 0.0226 256.40)",
+          "oklch(38% 0.0226 256.40)",
+          "oklch(49% 0.0226 256.40)",
+          "oklch(61% 0.0226 256.40)",
+          "oklch(72% 0.0226 256.40)",
+          "oklch(84% 0.0226 256.40)",
+          "oklch(95% 0.0226 256.40)"
+        ]
+      },
+      "text": {
+        "role": "neutral",
+        "displayName": "text",
+        "tonalRamp": [
+          "oklch(15% 0.0042 236.50)",
+          "oklch(26% 0.0042 236.50)",
+          "oklch(38% 0.0042 236.50)",
+          "oklch(49% 0.0042 236.50)",
+          "oklch(61% 0.0042 236.50)",
+          "oklch(72% 0.0042 236.50)",
+          "oklch(84% 0.0042 236.50)",
+          "oklch(95% 0.0042 236.50)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "muted",
+        "tonalRamp": [
+          "oklch(15% 0.0198 255.56)",
+          "oklch(26% 0.0198 255.56)",
+          "oklch(38% 0.0198 255.56)",
+          "oklch(49% 0.0198 255.56)",
+          "oklch(61% 0.0198 255.56)",
+          "oklch(72% 0.0198 255.56)",
+          "oklch(84% 0.0198 255.56)",
+          "oklch(95% 0.0198 255.56)"
+        ]
+      },
+      "subtle": {
+        "role": "neutral",
+        "displayName": "subtle",
+        "tonalRamp": [
+          "oklch(15% 0.0235 256.76)",
+          "oklch(26% 0.0235 256.76)",
+          "oklch(38% 0.0235 256.76)",
+          "oklch(49% 0.0235 256.76)",
+          "oklch(61% 0.0235 256.76)",
+          "oklch(72% 0.0235 256.76)",
+          "oklch(84% 0.0235 256.76)",
+          "oklch(95% 0.0235 256.76)"
+        ]
+      },
+      "accent-ink": {
+        "role": "primary",
+        "displayName": "accent-ink",
+        "tonalRamp": [
+          "oklch(15% 0.0375 166.49)",
+          "oklch(26% 0.0375 166.49)",
+          "oklch(38% 0.0375 166.49)",
+          "oklch(49% 0.0375 166.49)",
+          "oklch(61% 0.0375 166.49)",
+          "oklch(72% 0.0375 166.49)",
+          "oklch(84% 0.0375 166.49)",
+          "oklch(95% 0.0375 166.49)"
+        ]
+      },
+      "accent-hover": {
+        "role": "primary",
+        "displayName": "accent-hover",
+        "tonalRamp": [
+          "oklch(15% 0.0533 169.33)",
+          "oklch(26% 0.0533 169.33)",
+          "oklch(38% 0.0533 169.33)",
+          "oklch(49% 0.0533 169.33)",
+          "oklch(61% 0.0533 169.33)",
+          "oklch(72% 0.0533 169.33)",
+          "oklch(84% 0.0533 169.33)",
+          "oklch(95% 0.0533 169.33)"
+        ]
+      },
+      "nav-active": {
+        "role": "neutral",
+        "displayName": "nav-active",
+        "tonalRamp": [
+          "oklch(15% 0.0224 177.57)",
+          "oklch(26% 0.0224 177.57)",
+          "oklch(38% 0.0224 177.57)",
+          "oklch(49% 0.0224 177.57)",
+          "oklch(61% 0.0224 177.57)",
+          "oklch(72% 0.0224 177.57)",
+          "oklch(84% 0.0224 177.57)",
+          "oklch(95% 0.0224 177.57)"
+        ]
+      },
+      "nav-hover": {
+        "role": "neutral",
+        "displayName": "nav-hover",
+        "tonalRamp": [
+          "oklch(15% 0.0186 248.49)",
+          "oklch(26% 0.0186 248.49)",
+          "oklch(38% 0.0186 248.49)",
+          "oklch(49% 0.0186 248.49)",
+          "oklch(61% 0.0186 248.49)",
+          "oklch(72% 0.0186 248.49)",
+          "oklch(84% 0.0186 248.49)",
+          "oklch(95% 0.0186 248.49)"
+        ]
+      },
+      "project": {
+        "role": "neutral",
+        "displayName": "project",
+        "tonalRamp": [
+          "oklch(15% 0.0179 255.70)",
+          "oklch(26% 0.0179 255.70)",
+          "oklch(38% 0.0179 255.70)",
+          "oklch(49% 0.0179 255.70)",
+          "oklch(61% 0.0179 255.70)",
+          "oklch(72% 0.0179 255.70)",
+          "oklch(84% 0.0179 255.70)",
+          "oklch(95% 0.0179 255.70)"
+        ]
+      },
+      "book": {
+        "role": "neutral",
+        "displayName": "book",
+        "tonalRamp": [
+          "oklch(15% 0.0180 255.71)",
+          "oklch(26% 0.0180 255.71)",
+          "oklch(38% 0.0180 255.71)",
+          "oklch(49% 0.0180 255.71)",
+          "oklch(61% 0.0180 255.71)",
+          "oklch(72% 0.0180 255.71)",
+          "oklch(84% 0.0180 255.71)",
+          "oklch(95% 0.0180 255.71)"
+        ]
+      },
+      "tag-border": {
+        "role": "neutral",
+        "displayName": "tag-border",
+        "tonalRamp": [
+          "oklch(15% 0.0253 250.77)",
+          "oklch(26% 0.0253 250.77)",
+          "oklch(38% 0.0253 250.77)",
+          "oklch(49% 0.0253 250.77)",
+          "oklch(61% 0.0253 250.77)",
+          "oklch(72% 0.0253 250.77)",
+          "oklch(84% 0.0253 250.77)",
+          "oklch(95% 0.0253 250.77)"
+        ]
+      },
+      "tag-text": {
+        "role": "neutral",
+        "displayName": "tag-text",
+        "tonalRamp": [
+          "oklch(15% 0.0221 252.53)",
+          "oklch(26% 0.0221 252.53)",
+          "oklch(38% 0.0221 252.53)",
+          "oklch(49% 0.0221 252.53)",
+          "oklch(61% 0.0221 252.53)",
+          "oklch(72% 0.0221 252.53)",
+          "oklch(84% 0.0221 252.53)",
+          "oklch(95% 0.0221 252.53)"
+        ]
+      },
+      "filter-selected": {
+        "role": "neutral",
+        "displayName": "filter-selected",
+        "tonalRamp": [
+          "oklch(15% 0.0233 253.62)",
+          "oklch(26% 0.0233 253.62)",
+          "oklch(38% 0.0233 253.62)",
+          "oklch(49% 0.0233 253.62)",
+          "oklch(61% 0.0233 253.62)",
+          "oklch(72% 0.0233 253.62)",
+          "oklch(84% 0.0233 253.62)",
+          "oklch(95% 0.0233 253.62)"
+        ]
+      },
+      "filter-selected-text": {
+        "role": "neutral",
+        "displayName": "filter-selected-text",
+        "tonalRamp": [
+          "oklch(15% 0.0101 238.51)",
+          "oklch(26% 0.0101 238.51)",
+          "oklch(38% 0.0101 238.51)",
+          "oklch(49% 0.0101 238.51)",
+          "oklch(61% 0.0101 238.51)",
+          "oklch(72% 0.0101 238.51)",
+          "oklch(84% 0.0101 238.51)",
+          "oklch(95% 0.0101 238.51)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Identidad",
+        "purpose": "Nombre del perfil."
+      },
+      "headline": {
+        "displayName": "Sección",
+        "purpose": "Encabezados del perfil."
+      },
+      "body": {
+        "displayName": "Lectura",
+        "purpose": "Contenido profesional."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "interaction",
+        "value": "160ms ease",
+        "purpose": "Color, fondo y borde de botones/enlaces; giro de flecha en detalles de experiencia."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "animation: none !important; transition: none !important; scroll-behavior: auto",
+        "purpose": "Preferencia de movimiento reducido."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "wide-workspace-min",
+        "value": "1840px"
+      },
+      {
+        "name": "compact-desktop-max",
+        "value": "1200px"
+      },
+      {
+        "name": "stack-context-max",
+        "value": "1050px"
+      },
+      {
+        "name": "mobile-navigation-max",
+        "value": "760px"
+      },
+      {
+        "name": "single-project-column-max",
+        "value": "480px"
+      }
+    ],
+    "focus": {
+      "value": "2px solid var(--accent)",
+      "offset": "4px",
+      "purpose": "Contorno global de :focus-visible."
+    },
+    "colorRampNote": "Ramps sintetizados para exploración del panel; no constituyen una escala de color implementada ni sustituyen los tokens normativos del frontmatter.",
+    "themes": {
+      "attribute": "data-theme",
+      "storageKey": "portfolio-bg-color",
+      "default": "navy",
+      "palettes": {
+        "navy": {
+          "page": "#0b1220",
+          "panel": "#101a2b",
+          "sidebar": "#0e1828",
+          "raised": "#1c2b41",
+          "border": "#2b3d58",
+          "brand": "#203750",
+          "nav-active": "#1e3553",
+          "nav-hover": "#1d2e45",
+          "cover": "#1d3654",
+          "cover-art": "#87a9cb",
+          "cover-text": "#e1eaf6",
+          "cover-muted": "#b6cbe3",
+          "project": "#152238",
+          "book": "#142137",
+          "tech": "#121e32",
+          "filter": "#2b3e59",
+          "tag-border": "#3c506c",
+          "media": "#21314a",
+          "skeleton": "#26374d",
+          "progress-track": "#33465f",
+          "control-hover": "#24354d",
+          "company": "#243b56",
+          "specialty": "#1c2d3d",
+          "control-border": "#455c7c",
+          "accent": "#96caff",
+          "accent-ink": "#10233d",
+          "accent-hover": "#c4e0ff",
+          "accent-soft": "#dcecff",
+          "accent-bright": "#eff6ff",
+          "accent-container": "#223e62",
+          "avatar": "#b3d4fa",
+          "avatar-ink": "#173756",
+          "avatar-detail": "#4d6e94",
+          "company-text": "#b7d6f3",
+          "active-border": "#627d9e",
+          "quiet-accent": "#afc6e1"
+        },
+        "purple": {
+          "page": "#14101e",
+          "panel": "#1b1528",
+          "sidebar": "#191323",
+          "raised": "#2a223a",
+          "border": "#433451",
+          "brand": "#34263f",
+          "nav-active": "#382a4c",
+          "nav-hover": "#30263f",
+          "cover": "#3b2b50",
+          "cover-art": "#b09ac7",
+          "cover-text": "#eee5f5",
+          "cover-muted": "#cdbbdc",
+          "project": "#241c33",
+          "book": "#221b30",
+          "tech": "#20192d",
+          "filter": "#3b2e4c",
+          "tag-border": "#514060",
+          "media": "#31263f",
+          "skeleton": "#362c43",
+          "progress-track": "#4b3b5b",
+          "control-hover": "#342940",
+          "company": "#3b2c4d",
+          "specialty": "#2c2538",
+          "control-border": "#5e4d70",
+          "accent": "#ceb5fa",
+          "accent-ink": "#2c1745",
+          "accent-hover": "#e2d0ff",
+          "accent-soft": "#eee4ff",
+          "accent-bright": "#f7f0ff",
+          "accent-container": "#47305f",
+          "avatar": "#d5c0f1",
+          "avatar-ink": "#38214f",
+          "avatar-detail": "#75568f",
+          "company-text": "#dcc8f1",
+          "active-border": "#8b71a6",
+          "quiet-accent": "#c0abd2"
+        },
+        "black": {
+          "accent": "#a6e3cb",
+          "accent-ink": "#132d23",
+          "accent-hover": "#c1efdd",
+          "accent-soft": "#d3f5e7",
+          "accent-bright": "#dcf9ed",
+          "accent-container": "#224c3d",
+          "avatar": "#b4d9cb",
+          "avatar-ink": "#173c32",
+          "avatar-detail": "#4b7769",
+          "company-text": "#c4e3da",
+          "active-border": "#53675f",
+          "quiet-accent": "#8a9b98"
+        },
+        "light": {
+          "page": "#f2f5fa",
+          "panel": "#ffffff",
+          "sidebar": "#eaf0f8",
+          "raised": "#e4ecf7",
+          "border": "#c7d2e2",
+          "text": "#18283b",
+          "muted": "#43566e",
+          "subtle": "#53657c",
+          "accent": "#245ca8",
+          "accent-ink": "#ffffff",
+          "accent-hover": "#174578",
+          "accent-soft": "#174578",
+          "accent-bright": "#123966",
+          "accent-container": "#e0eafa",
+          "avatar": "#c9dcf5",
+          "avatar-ink": "#173c6b",
+          "avatar-detail": "#426996",
+          "company-text": "#234c7b",
+          "active-border": "#6a8bb5",
+          "quiet-accent": "#46658c",
+          "brand": "#d8e5f5",
+          "nav-active": "#d7e5f7",
+          "nav-hover": "#dfe9f6",
+          "company": "#dbe7f7",
+          "cover": "#0b2646",
+          "cover-art": "#87a9cb",
+          "cover-text": "#e1eaf6",
+          "cover-muted": "#b6cbe3",
+          "project": "#f6f8fc",
+          "book": "#f6f8fc",
+          "tech": "#f5f8fc",
+          "filter": "#dce8f8",
+          "tag-border": "#a9bdd5",
+          "media": "#e5edf8",
+          "skeleton": "#dbe5f1",
+          "progress-track": "#ccd8e7",
+          "control-hover": "#dce8f7",
+          "specialty": "#e4edf8",
+          "control-border": "#a7bad2",
+          "role-text": "#304861",
+          "body-copy": "#354b64",
+          "specialty-text": "#354d66",
+          "secondary-text": "#304861",
+          "tag-text": "#3f5672",
+          "filter-text": "#204f8b"
+        }
+      },
+      "order": [
+        "navy",
+        "purple",
+        "black",
+        "light"
+      ]
+    },
+    "credentialArtwork": {
+      "aspectRatio": 1.1,
+      "technique": "CSS viewport crop; preserve original source images",
+      "galleryColumns": 3,
+      "breakpoints": [
+        {
+          "maxWidth": 650,
+          "columns": 2
+        },
+        {
+          "maxWidth": 360,
+          "columns": 1
+        }
+      ],
+      "providers": [
+        "google-skills",
+        "microsoft-learn"
+      ]
+    },
+    "coverLab": {
+      "route": "/laboratorio/portadas",
+      "ratio": "851/315",
+      "engines": [
+        "CSS",
+        "GSAP MotionPath",
+        "Web Animations API"
+      ],
+      "canvas": "#f5f8fd",
+      "node": "#ffffff",
+      "text": "#17345e",
+      "accent": "#245ca8",
+      "reducedMotion": "static",
+      "offscreen": "paused"
+    },
+    "cover": {
+      "rasterWidths": [
+        851,
+        2061
+      ],
+      "rasterFormat": "webp",
+      "responsive": "srcset + sizes",
+      "animatedThemes": [
+        "navy",
+        "purple",
+        "black",
+        "light"
+      ],
+      "architectureOverlay": {
+        "preservesOriginals": true,
+        "comparisonControl": false,
+        "basePath": "/covers/animated/",
+        "periodSeconds": 18.5,
+        "themeKinds": {
+          "navy": "cloud",
+          "purple": "events",
+          "black": "agents"
+        }
+      },
+      "animatedRenderer": "Web Animations API",
+      "animatedVariant": "native",
+      "diagramLanguage": "en",
+      "src": "/covers/cloud-architecture-corporate.png",
+      "sourcesByTheme": {
+        "navy": "/covers/cloud-architecture-corporate.png",
+        "black": "/covers/agent-architecture-corporate-green.png",
+        "purple": "/covers/event-architecture-corporate-purple.png",
+        "light": "/covers/cloud-architecture-light.png"
+      },
+      "width": 851,
+      "height": 315,
+      "fit": "contain",
+      "autoplay": true,
+      "desktopHeight": "clamp(160px, 28vh, 280px)"
+    },
+    "projects": {
+      "layout": "horizontal-scroll-snap",
+      "cardWidth": "min(330px, 86%)",
+      "imageHeight": 144,
+      "filterReset": true,
+      "arrowTarget": 44,
+      "keyboard": [
+        "ArrowLeft",
+        "ArrowRight",
+        "Home",
+        "End"
+      ],
+      "autoplay": false
+    }
+  },
+  "components": [
+    {
+      "name": "Contacto",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Acción principal de contacto.",
+      "html": "<a class=\"ds-x\" href=\"mailto:ejemplo@example.com\">Contactar</a>",
+      "css": ".ds-x{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:8px 14px;background:var(--accent,#a6e3cb);color:#132d23;border:1px solid var(--accent,#a6e3cb);border-radius:8px;font:750 12px/1.65 Montserrat,sans-serif;text-decoration:none;transition:background-color 160ms ease,border-color 160ms ease}.ds-x:hover{background:#c1efdd;border-color:#c1efdd}.ds-x:focus-visible{outline:2px solid var(--accent,#a6e3cb);outline-offset:4px}@media(max-width:480px){.ds-x{min-height:44px}}@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}"
+    },
+    {
+      "name": "Acción secundaria",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Acción de recuperación presente en estados vacíos.",
+      "html": "<button class=\"ds-x\" type=\"button\">Ver todos</button>",
+      "css": ".ds-x{min-height:40px;padding:8px 14px;border:1px solid var(--border,#2b333e);border-radius:8px;background:var(--raised,#1c232c);color:var(--text,#f0f3f5);font:750 12px/1.65 Montserrat,sans-serif;cursor:pointer}.ds-x:focus-visible{outline:2px solid var(--accent,#a6e3cb);outline-offset:4px}@media(max-width:480px){.ds-x{min-height:44px}}@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}"
+    },
+    {
+      "name": "Navegación",
+      "kind": "nav",
+      "refersTo": "nav-active",
+      "description": "Ubicación actual con texto, icono y aria-current.",
+      "html": "<nav aria-label=\"Principal\"><a class=\"ds-x\" href=\"#inicio\" aria-current=\"location\"><svg aria-hidden=\"true\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\"><circle cx=\"12\" cy=\"8\" r=\"3\"/><path d=\"M5 21v-3a7 7 0 0 1 14 0v3z\"/></svg>Inicio</a></nav>",
+      "css": ".ds-x{display:flex;align-items:center;gap:12px;min-height:44px;padding:10px 12px;border-radius:8px;background:#23332f;color:var(--accent,#a6e3cb);font:600 13px/1.65 Montserrat,sans-serif;text-decoration:none;transition:background-color 160ms ease,color 160ms ease}.ds-x:hover{background:#222a32;color:var(--text,#f0f3f5)}.ds-x:focus-visible{outline:2px solid var(--accent,#a6e3cb);outline-offset:4px}@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}"
+    },
+    {
+      "name": "Etiqueta",
+      "kind": "chip",
+      "refersTo": "tag",
+      "description": "Tecnología informativa; no simula un control.",
+      "html": "<span class=\"ds-tag\">ANGULAR</span>",
+      "css": ".ds-tag{display:inline-flex;align-items:center;border:1px solid #35404c;color:#b3becb;font:550 10px/1.6 Montserrat,sans-serif;padding:2px 7px;border-radius:5px}@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}"
+    },
+    {
+      "name": "Filtro",
+      "kind": "button",
+      "description": "Estado seleccionado comunicado por aria-pressed.",
+      "html": "<button class=\"ds-x\" type=\"button\" aria-pressed=\"true\">Angular</button>",
+      "css": ".ds-x{min-height:36px;border:1px solid transparent;border-radius:7px;padding:6px 10px;background:#2a333e;color:#e9f0f5;font:650 11px/1.65 Montserrat,sans-serif;cursor:pointer;transition:background-color 160ms ease,color 160ms ease}.ds-x:hover{background:#202832;color:var(--text,#f0f3f5)}.ds-x:focus-visible{outline:2px solid var(--accent,#a6e3cb);outline-offset:4px}@media(max-width:760px){.ds-x{min-height:44px;padding:7px 10px}}@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}"
+    },
+    {
+      "name": "Tarjeta de proyecto",
+      "kind": "card",
+      "refersTo": "project-card",
+      "description": "Superficie compacta; la imagen original se incorpora en el producto.",
+      "html": "<article class=\"ds-card\"><h3>Nombre del proyecto</h3><p>Descripción del trabajo realizado.</p><a class=\"ds-x\" href=\"#codigo\">Código ↗</a></article>",
+      "css": ".ds-card{padding:15px;border:1px solid var(--border,#2b333e);border-radius:12px;background:#181e26;color:var(--text,#f0f3f5);font-family:Montserrat,sans-serif;}.ds-card h3{margin:0;font-size:14px;line-height:1.4;font-weight:750;letter-spacing:-.015em}.ds-card p{margin:8px 0 12px;color:var(--muted,#b0b9c5);font-size:12px;line-height:1.8}.ds-x{display:inline-flex;align-items:center;min-height:28px;color:inherit;font-size:12px;font-weight:650;text-decoration:none;transition:color 160ms ease}.ds-x:hover{color:var(--accent,#a6e3cb)}.ds-x:focus-visible{outline:2px solid var(--accent,#a6e3cb);outline-offset:4px}@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}"
+    },
+    {
+      "name": "Detalle desplegable",
+      "kind": "custom",
+      "description": "Divulgación nativa de responsabilidades; expansión por teclado.",
+      "html": "<details class=\"ds-details\"><summary class=\"ds-x\">Responsabilidades <svg width=\"17\" height=\"17\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m6 9 6 6 6-6\"/></svg></summary><p>Contenido profesional existente.</p></details>",
+      "css": ".ds-details{font-family:Montserrat,sans-serif;color:var(--muted,#b0b9c5)}.ds-x{display:inline-flex;align-items:center;gap:5px;min-height:32px;list-style:none;color:var(--accent,#a6e3cb);font-size:11px;cursor:pointer}.ds-x::-webkit-details-marker{display:none}.ds-x svg{transition:transform 160ms ease}.ds-details[open] .ds-x svg{transform:rotate(180deg)}.ds-details p{font-size:12px;line-height:1.8}.ds-x:focus-visible{outline:2px solid var(--accent,#a6e3cb);outline-offset:4px}@media(max-width:760px){.ds-x{min-height:44px}}@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Un perfil de trabajo propio",
+    "overview": "Perfil profesional con azul predeterminado, variantes morada/carbón/clara, Montserrat y portada de arquitectura cloud de 851x315. Tokens extraídos de la implementación.",
+    "keyCharacteristics": [
+      "Densidad de perfil, con listas y divisores finos.",
+      "Contraste por superficies y jerarquía tipográfica.",
+      "Menta reservada a acciones, estados y pequeños detalles de identidad.",
+      "Contenido real, español/inglés y controles semánticos."
+    ],
+    "rules": [
+      {
+        "name": "The Accent Has a Job Rule",
+        "body": "Cada uso de menta debe identificar una acción, un estado o una firma de identidad; no rellenar espacio.",
+        "section": "colors"
+      },
+      {
+        "name": "The Tonal Depth Rule",
+        "body": "Separar contenido con tono y borde antes de introducir efectos de elevación.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do reutilizar Montserrat, superficies de carbón y menta funcional.",
+      "Do conservar imágenes a color, contenido real y monograma JG.",
+      "Do mantener foco visible, etiquetas accesibles y equivalencia español/inglés.",
+      "Do verificar anclas, filtros y expansión por teclado en escritorio y móvil."
+    ],
+    "donts": [
+      "Don't copiar datos, fotografía o métricas sociales del perfil de referencia.",
+      "Don't añadir partículas, halos, vidrio ni desaturación de imágenes.",
+      "Don't convertir cada entrada de experiencia o credencial en una tarjeta elevada.",
+      "Don't tratar los valores medidos de daily.dev como tokens de este portafolio."
+    ]
+  }
+}

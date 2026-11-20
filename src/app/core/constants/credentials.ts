@@ -1,0 +1,68 @@
+import { Credential } from '../models/credential.model';
+
+export const CREDENTIALS: readonly Credential[] = [
+  {
+    id: 'introduction-ai-agents',
+    title: 'Introduction to AI Agents',
+    provider: 'google-skills',
+    image: '/badges/WhatsApp Image 2026-10-23 at 1.25.09 AM.jpeg',
+    issuedOn: '2026-09-22',
+    artwork: { sourceWidth: 693, x: 38, y: 110, width: 595, height: 540 },
+  },
+  {
+    id: 'agent-fundamentals',
+    title: 'Agent Fundamentals',
+    provider: 'google-skills',
+    image: '/badges/WhatsApp Image 2026-10-23 at 1.25.31 AM.jpeg',
+    issuedOn: '2026-09-22',
+    artwork: { sourceWidth: 439, x: 70, y: 58, width: 318, height: 288 },
+  },
+  {
+    id: 'service-orchestration',
+    title: 'Service Orchestration and Choreography on Google Cloud',
+    provider: 'google-skills',
+    image: '/badges/WhatsApp Image 2026-10-23 at 1.26.16 AM.jpeg',
+    issuedOn: '2026-09-11',
+    artwork: { sourceWidth: 393, x: 34, y: 56, width: 318, height: 290 },
+  },
+  {
+    id: 'application-foundations',
+    title: 'Developing Application with Google Cloud: Foundations',
+    provider: 'google-skills',
+    image: '/badges/WhatsApp Image 2026-10-23 at 1.26.40 AM.jpeg',
+    issuedOn: '2026-08-29',
+    artwork: { sourceWidth: 415, x: 39, y: 61, width: 318, height: 289 },
+  },
+  {
+    id: 'cloud-run-functions',
+    title: 'Developing Applications with Cloud Run Functions on Google Cloud',
+    provider: 'google-skills',
+    image: '/badges/WhatsApp Image 2026-10-23 at 1.27.10 AM.jpeg',
+    issuedOn: '2026-07-20',
+    artwork: { sourceWidth: 415, x: 37, y: 58, width: 318, height: 289 },
+  },
+  {
+    id: 'cloud-run-fundamentals',
+    title: 'Developing Applications with Cloud Run on Google Cloud: Fundamentals',
+    provider: 'google-skills',
+    image: '/badges/WhatsApp Image 2026-10-23 at 1.27.32 AM.jpeg',
+    issuedOn: '2026-02-03',
+    artwork: { sourceWidth: 385, x: 31, y: 57, width: 318, height: 290 },
+  },
+  {
+    id: 'cloud-core-infrastructure',
+    title: 'Google Cloud Fundamentals: Core Infrastructure',
+    provider: 'google-skills',
+    image: '/badges/WhatsApp Image 2026-10-23 at 1.27.51 AM.jpeg',
+    issuedOn: '2026-02-03',
+    artwork: { sourceWidth: 424, x: 47, y: 61, width: 318, height: 289 },
+  },
+  {
+    id: 'essential-cloud-core-services',
+    title: 'Essential Google Cloud Infrastructure: Core Services',
+    provider: 'google-skills',
+    image: '/badges/WhatsApp Image 2026-10-23 at 1.28.53 AM.jpeg',
+    issuedOn: '2026-02-03',
+    artwork: { sourceWidth: 418, x: 39, y: 58, width: 318, height: 289 },
+  },
+];

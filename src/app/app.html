@@ -1,15 +1,27 @@
-<div class="min-h-screen flex flex-col relative overflow-x-hidden">
-  <!-- Dynamic Background Selector Layer -->
-  <app-background-switcher></app-background-switcher>
-
-  <!-- Floating Navigation Dock -->
-  <app-nav-bar class="relative z-50"></app-nav-bar>
-
-  <!-- Routed Component Content Area -->
-  <main class="flex-grow relative z-10">
-    <router-outlet></router-outlet>
-  </main>
-
-  <!-- Footer Component -->
-  <app-footer class="relative z-10"></app-footer>
+<!-- THESIS: Un perfil que permite recorrer el trabajo real de José.
+OWN-WORLD: Carbón, verde menta, bordes finos, Montserrat y geometría propia.
+STORY: Conocer a José, explorar su trabajo, contactar.
+FIRST VIEWPORT: Navegación lateral, perfil central y contexto profesional a la derecha.
+FORM: Perfil de desarrollador basado en las capturas aportadas.
+FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md -->
+<a class="skip-link" href="#contenido">{{
+  lang() === 'es' ? 'Saltar al contenido' : 'Skip to content'
+}}</a>
+<app-nav-bar></app-nav-bar>
+<div class="app-workspace">
+  <header class="workspace-header">
+    <div>
+      <span class="breadcrumb">{{ lang() === 'es' ? 'Portafolio' : 'Portfolio' }}</span
+      ><span class="breadcrumb-divider">/</span><span>José González</span>
+    </div>
+    <a
+      href="https://github.com/jdg03"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="header-github"
+      >GitHub <span aria-hidden="true">↗</span></a
+    >
+  </header>
+  <main id="contenido" tabindex="-1"><router-outlet></router-outlet></main>
+  <app-footer></app-footer>
 </div>

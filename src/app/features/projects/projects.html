@@ -1,43 +1,81 @@
-<section id="proyectos" class="relative py-section-padding border-t border-white/5">
-  <!-- Glowing ambient light -->
-  <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-96 h-96 rounded-full bg-primary/10 blur-[120px] pointer-events-none"></div>
-
-  <div class="relative z-10 max-w-container-max mx-auto px-gutter">
-    
-    <!-- Section Header -->
-    <header class="mb-16 text-center md:text-left">
-      <div class="inline-flex items-center gap-2 mb-4 px-3 py-1 rounded-full border border-primary/20 bg-primary/5">
-        <span class="w-2 h-2 rounded-full bg-primary animate-pulse shadow-[0_0_8px_#d2bbff]"></span>
-        <span class="font-sans font-semibold text-[9px] text-primary uppercase tracking-widest">{{ ui.projBadge[lang()] }}</span>
-      </div>
-      <h2 class="font-display text-4xl md:text-6xl font-bold text-white mb-4">{{ ui.projTitle[lang()] }}</h2>
-      <p class="font-sans text-sm md:text-base text-on-surface-variant max-w-2xl leading-relaxed">
-        {{ ui.projDesc[lang()] }}
-      </p>
-    </header>
-
-    <!-- Dynamic Filter Buttons Row -->
-    <div class="flex flex-wrap gap-2.5 mb-12 justify-center md:justify-start">
+<section id="proyectos" class="content-section" aria-labelledby="projects-title">
+  <div class="section-heading">
+    <h2 id="projects-title">{{ ui.projTitle[lang()] }}</h2>
+    <span
+      class="count-badge"
+      role="status"
+      aria-live="polite"
+      [attr.aria-label]="filteredProjects().length + (lang() === 'es' ? ' proyectos' : ' projects')"
+      >{{ filteredProjects().length }}</span
+    >
+  </div>
+  <div class="projects-toolbar">
+    <div
+      class="filter-row"
+      role="group"
+      [attr.aria-label]="
+        lang() === 'es' ? 'Filtrar proyectos por tecnología' : 'Filter projects by technology'
+      "
+    >
       @for (option of filterOptions; track option) {
-        <button (click)="setFilter(option)"
-                [class]="activeFilter() === option ? activeFilterClasses : inactiveFilterClasses">
+        <button
+          type="button"
+          class="filter-button"
+          [class.is-selected]="activeFilter() === option"
+          [attr.aria-pressed]="activeFilter() === option"
+          (click)="setFilter(option)"
+        >
           {{ option === 'ALL' ? ui.projFilterAll[lang()] : option }}
         </button>
       }
     </div>
-
-    <!-- Projects Bento Grid (Dynamic) -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      @for (project of filteredProjects(); track project.id) {
-        <app-project-card [project]="project" class="h-full"></app-project-card>
-      } @empty {
-        <!-- Empty State if no projects match filter -->
-        <div class="col-span-full py-16 text-center border border-white/5 bg-surface-container/20 backdrop-blur-md rounded-2xl flex flex-col items-center justify-center gap-3">
-          <span class="material-symbols-outlined text-primary/60 text-4xl">search_off</span>
-          <p class="text-on-surface-variant text-sm font-mono">{{ ui.projEmpty[lang()] }}</p>
-        </div>
-      }
+    <div
+      class="project-navigation"
+      role="group"
+      [attr.aria-label]="lang() === 'es' ? 'Navegar proyectos' : 'Browse projects'"
+    >
+      <button
+        type="button"
+        class="project-arrow"
+        data-project-direction="previous"
+        aria-controls="project-track"
+        [disabled]="!canPrevious()"
+        (click)="move(-1)"
+        [attr.aria-label]="lang() === 'es' ? 'Proyecto anterior' : 'Previous project'"
+      >
+        <span class="material-symbols-outlined" aria-hidden="true">chevron_left</span>
+      </button>
+      <button
+        type="button"
+        class="project-arrow"
+        data-project-direction="next"
+        aria-controls="project-track"
+        [disabled]="!canNext()"
+        (click)="move(1)"
+        [attr.aria-label]="lang() === 'es' ? 'Proyecto siguiente' : 'Next project'"
+      >
+        <span class="material-symbols-outlined" aria-hidden="true">chevron_right</span>
+      </button>
     </div>
-
+  </div>
+  <div
+    #projectTrack
+    id="project-track"
+    class="projects-track"
+    tabindex="0"
+    role="region"
+    [attr.aria-label]="
+      lang() === 'es'
+        ? 'Proyectos, usa las flechas para explorar'
+        : 'Projects, use arrow keys to explore'
+    "
+    (scroll)="updateNavigation()"
+    (keydown)="onTrackKey($event)"
+  >
+    @for (project of filteredProjects(); track project.id) {
+      <app-project-card [project]="project"></app-project-card>
+    } @empty {
+      <p class="empty-state">{{ ui.projEmpty[lang()] }}</p>
+    }
   </div>
 </section>

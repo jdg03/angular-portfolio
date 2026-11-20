@@ -4,6 +4,10 @@ export const EXPERIENCE: ExperienceItem[] = [
   {
     title: { es: "Analista de aplicaciones junior", en: "Junior Applications Analyst" },
     company: "AGREGA",
+    summary: {
+      es: "Desarrollo de aplicaciones, agentes de IA e integraciones con Python, Docker y Google Cloud (GCP), y automatización de pipelines CI/CD con GitLab.",
+      en: "Development of applications, AI agents and integrations with Python, Docker and Google Cloud (GCP), and automation of CI/CD pipelines with GitLab."
+    },
     dateStart: { es: "Enero 2026", en: "January 2026" },
     dateEnd: { es: "Actualmente", en: "Present" },
     type: { es: "TIEMPO COMPLETO", en: "FULL-TIME" },
@@ -64,7 +68,7 @@ export const EXPERIENCE: ExperienceItem[] = [
         color: "tertiary"
       }
     ],
-    frontendTechs: ["PYTHON", "DOCKER", "GITLAB", "GOOGLE CLOUD", "AZURE"]
+    frontendTechs: ["PYTHON", "DOCKER", "GITLAB", "GOOGLE CLOUD", { es: "AGENTES IA", en: "AI AGENTS" }]
   },
   {
     title: { es: "Practicante de Desarrollo de Software", en: "Software Development Intern" },

@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diagram flow — native browser example</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 24px; background: #eef2f6; color: #20314a; font: 16px/1.6 system-ui, sans-serif; }
+  main { max-width: 900px; margin: auto; }
+  h1 { font-size: 24px; }
+  .art { background: #fff; border: 1px solid #c8d2df; border-radius: 12px; overflow: hidden; }
+  svg { display: block; width: 100%; height: auto; }
+  .node { fill: #fff; stroke: #93a5bb; }
+  .route { fill: none; stroke: #93a5bb; stroke-width: 2; }
+  .packet { opacity: 0; fill: #28649a; stroke: white; stroke-width: 1; }
+  .pulse { opacity: 0; fill: none; stroke: #28649a; stroke-width: 3; }
+  text { fill: #20314a; font: 16px system-ui, sans-serif; text-anchor: middle; }
+  button { min-height: 44px; padding: 8px 18px; border: 1px solid #93a5bb; border-radius: 8px; background: white; color: inherit; font: inherit; cursor: pointer; }
+  button:focus-visible { outline: 3px solid #28649a; outline-offset: 3px; }
+  .spacer { height: 110vh; }
+</style>
+<main>
+  <h1>Requests and telemetry</h1>
+  <p>A static SVG plus independent moving packets. No animation library or build step.</p>
+  <div class="art">
+    <svg id="diagram" viewBox="0 0 851 315" role="img" aria-labelledby="flow-title flow-desc">
+      <title id="flow-title">Application request flow</title>
+      <desc id="flow-desc">Client sends a request through the API to a worker. Worker telemetry reaches observability. Timing is illustrative.</desc>
+      <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#93a5bb"/></marker></defs>
+      <g aria-hidden="true">
+        <path class="route" d="M190 105H310" marker-end="url(#arrow)"/>
+        <path class="route" d="M460 105H580" marker-end="url(#arrow)"/>
+        <path class="route" d="M655 140V240H460" marker-end="url(#arrow)"/>
+        <rect class="node" x="40" y="70" width="150" height="70" rx="8"/>
+        <rect class="node" x="310" y="70" width="150" height="70" rx="8"/>
+        <rect class="node" x="580" y="70" width="150" height="70" rx="8"/>
+        <rect class="node" x="310" y="205" width="150" height="70" rx="8"/>
+        <text x="115" y="111">Client</text><text x="385" y="111">API</text>
+        <text x="655" y="111">Worker</text><text x="385" y="246">Observability</text>
+        <circle class="packet" data-message="client-api" cx="0" cy="0" r="5"/>
+        <circle class="packet" data-message="api-worker" cx="0" cy="0" r="5"/>
+        <circle class="packet" data-message="telemetry" cx="0" cy="0" r="5"/>
+        <rect class="pulse" data-module="api" x="310" y="70" width="150" height="70" rx="8"/>
+        <rect class="pulse" data-module="worker" x="580" y="70" width="150" height="70" rx="8"/>
+        <rect class="pulse" data-module="observability" x="310" y="205" width="150" height="70" rx="8"/>
+      </g>
+    </svg>
+  </div>
+  <p><button id="pause" type="button" aria-pressed="false">Pause animation</button></p>
+  <p id="status" role="status">Reduced motion shows the static diagram. Scroll down to test offscreen suspension.</p>
+  <div class="spacer" aria-hidden="true"></div>
+</main>
+<script type="module">
+  import { mountFlow } from './flow-player.mjs';
+  const svg = document.querySelector('#diagram');
+  const player = mountFlow(svg, {
+    period: 8,
+    routes: [
+      { id: 'client-api', path: 'M190 105H310', start: 0.4, duration: 1 },
+      { id: 'api-worker', path: 'M460 105H580', start: 1.8, duration: 1 },
+      { id: 'telemetry', path: 'M655 140V240H460', start: 3.2, duration: 1.8 },
+    ],
+    modules: [{ id: 'api', start: 1.4 }, { id: 'worker', start: 2.8 }, { id: 'observability', start: 5 }],
+  });
+  const button = document.querySelector('#pause');
+  let paused = false;
+  if (!player.supported) {
+    button.hidden = true;
+    document.querySelector('#status').textContent = 'Motion is unavailable in this browser. The static diagram remains readable.';
+  }
+  button.addEventListener('click', () => {
+    paused = !paused;
+    player.setPaused(paused);
+    button.setAttribute('aria-pressed', String(paused));
+    button.textContent = paused ? 'Resume animation' : 'Pause animation';
+  });
+  // Exposed only for this demo's browser verification. Do not require globals in app integrations.
+  window.flowDemo = player;
+  window.addEventListener('pagehide', event => { if (!event.persisted) player.dispose(); });
+</script>
+</html>

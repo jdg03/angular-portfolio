@@ -1,10 +1,10 @@
 import { Component, computed, inject, input, signal, OnInit } from '@angular/core';
-import { Meta } from '@angular/platform-browser';
 import { injectQuery } from '@tanstack/angular-query-experimental';
 import { ReadingsService } from '../../core/services/readings.service';
 import { BookReading, ReadingStatus } from '../../core/models/reading.model';
 import { BookCardComponent } from './book-card';
 import { TranslationService } from '../../core/services/translation.service';
+import { SeoService } from '../../core/services/seo.service';
 
 @Component({
   selector: 'app-readings',
@@ -16,21 +16,17 @@ export class ReadingsComponent implements OnInit {
   readonly embedded = input(false);
   private readonly readingsService = inject(ReadingsService);
   private readonly translationService = inject(TranslationService);
-  private readonly meta = inject(Meta);
+  private readonly seo = inject(SeoService);
   protected readonly ui = this.translationService.ui;
   protected readonly lang = this.translationService.lang;
 
   ngOnInit() {
     if (this.embedded()) return;
-    this.meta.updateTag({
-      name: 'description',
-      content:
+    this.seo.updatePage({
+      path: '/lecturas',
+      title: 'Biblioteca técnica | José González',
+      description:
         'Mi biblioteca técnica personal. Libros y documentación técnica que leo para mantenerme al día con la industria y mejores prácticas.',
-    });
-    this.meta.updateTag({ property: 'og:title', content: 'Biblioteca | José González' });
-    this.meta.updateTag({
-      property: 'og:description',
-      content: 'Biblioteca técnica y lecturas profesionales de José González.',
     });
   }
 
